@@ -3,7 +3,7 @@ project(FlappyBird)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(FlappyBird main.cpp)
+add_subdirectory(src)
 
 set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_DIR C:/SFML/lib/cmake/SFML)
