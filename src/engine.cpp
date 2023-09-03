@@ -5,7 +5,7 @@ Engine::Engine(unsigned int height, unsigned int width, const sf::String &title)
           window(sf::VideoMode(resolution.y, resolution.x), title) {
 
     //TODO make better path
-    bird.loadFromFile("../../assets/FlappyBird.png");
+    bird.loadFromFile("assets/FlappyBird.png");
     sprite.setTexture(bird);
 
 }
