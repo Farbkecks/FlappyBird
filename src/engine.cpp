@@ -5,15 +5,17 @@ Engine::Engine(unsigned int height, unsigned int width, const sf::String &title)
           window(sf::VideoMode(resolution.y, resolution.x), title) {
 
     //TODO make better path
-    bird.loadFromFile("assets/FlappyBird.png");
-    sprite.setTexture(bird);
+    birdUp.loadFromFile("assets/FlappyBird.png", {0, 0, 255, 180});
+    birdDown.loadFromFile("assets/FlappyBird.png", {255, 0, 255, 180});
+//    bird.loadFromFile("assets/FlappyBird.png");
+    birdSprite.setTexture(birdUp);
 
 }
 
 void Engine::run() {
     while (window.isOpen()) {
         window.clear(sf::Color::White);
-        window.draw(sprite);
+        window.draw(birdSprite);
         window.display();
         input();
     }
@@ -32,8 +34,14 @@ void Engine::input() {
         // Handle Keyboard Input
         if (event.type == Event::KeyPressed) {
             // Quit
-            if (Keyboard::isKeyPressed(Keyboard::Escape)) {
+            if (event.key.code == sf::Keyboard::Escape) {
                 window.close();
+            }
+            if (event.key.code == sf::Keyboard::A) {
+                birdSprite.setTexture(birdUp);
+            }
+            if (event.key.code == sf::Keyboard::D) {
+                birdSprite.setTexture(birdDown);
             }
         }
     }

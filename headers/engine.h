@@ -19,7 +19,8 @@ private:
     //variables
     sf::Vector2f resolution;
     sf::RenderWindow window;
-    sf::Texture bird;
-    sf::Sprite sprite;
+    sf::Texture birdUp;
+    sf::Texture birdDown;
+    sf::Sprite birdSprite;
 
 };
