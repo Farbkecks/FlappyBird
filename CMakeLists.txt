@@ -10,3 +10,4 @@ set(SFML_DIR C:/SFML/lib/cmake/SFML)
 find_package(SFML COMPONENTS system window graphics audio network REQUIRED)
 
 target_link_libraries(FlappyBird sfml-system sfml-window sfml-graphics sfml-audio)
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
