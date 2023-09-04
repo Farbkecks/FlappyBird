@@ -2,8 +2,8 @@
 
 Engine::Engine(unsigned int height, unsigned int width, const sf::String &title)
         : resolution(height, width),
-          window(sf::VideoMode(resolution.y, resolution.x), title),
-          bird({100, 400}, "assets/FlappyBird.png") {
+          window(sf::VideoMode(resolution.y, resolution.x), title, sf::Style::Close),
+          bird({100, 400}, "assets/FlappyBird.png", window.getSize()) {
     window.setFramerateLimit(60);
 }
 
@@ -38,6 +38,9 @@ void Engine::input() {
             }
             if (event.key.code == sf::Keyboard::D) {
                 bird.changeToBirdDown();
+            }
+            if (event.key.code == sf::Keyboard::Space) {
+                bird.setVelocity(20);
             }
         }
     }

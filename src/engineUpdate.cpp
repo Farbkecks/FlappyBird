@@ -2,11 +2,12 @@
 
 
 void Engine::update() {
-    if (timeSinceLastMove.asSeconds() < sf::seconds(.1f / 100).asSeconds()) {
+    //TODO put usefully numbers
+    if (timeSinceLastMove.asSeconds() < sf::seconds(.1f / 10).asSeconds()) {
         return;
     }
-//    print(timeSinceLastMove.asSeconds());
-    bird.goUp(7);
+    bird.changeVelocity(-1);
+    bird.change();
     timeSinceLastMove = sf::Time::Zero;
 
 }
