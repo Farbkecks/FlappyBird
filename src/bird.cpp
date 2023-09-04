@@ -4,18 +4,28 @@ Bird::Bird(const sf::Vector2f &pos, const sf::String &path, const sf::Vector2u &
         : windowSize(windowSize), velocity(0) {
     birdUp.loadFromFile(path, {0, 0, 255, 180});
     birdDown.loadFromFile(path, {255, 0, 255, 180});
+
     birdSprite.setTexture(birdUp);
+    birdTextureIsUp = true;
+
     birdSprite.setScale({0.3, 0.3});
     position = pos;
+
     update();
 }
 
 void Bird::changeToBirdUp() {
-    birdSprite.setTexture(birdUp);
+    if (!birdTextureIsUp) {
+        birdSprite.setTexture(birdUp);
+        birdTextureIsUp = true;
+    }
 }
 
 void Bird::changeToBirdDown() {
-    birdSprite.setTexture(birdDown);
+    if (birdTextureIsUp) {
+        birdSprite.setTexture(birdDown);
+        birdTextureIsUp = false;
+    }
 }
 
 sf::Sprite Bird::getSprite() const {
@@ -23,6 +33,12 @@ sf::Sprite Bird::getSprite() const {
 }
 
 void Bird::update() {
+    if (velocity > 0) {
+        changeToBirdUp();
+    } else {
+        changeToBirdDown();
+    }
+
     checkForBounds();
     birdSprite.setPosition(position);
 }

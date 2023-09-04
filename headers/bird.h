@@ -51,6 +51,7 @@ private:
     //variables
     sf::Texture birdUp;
     sf::Texture birdDown;
+    bool birdTextureIsUp;
     sf::Sprite birdSprite;
     sf::Vector2f position;
     const sf::Vector2u windowSize;
