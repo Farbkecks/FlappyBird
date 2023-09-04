@@ -5,19 +5,7 @@
 #include "print.h"
 
 
-class Bird {
-//public:
-//    template<typename T>
-//    struct Range {
-//        T number = 0;
-//        const T maxNumber = 20;
-//        const T minNumber = -10;
-//
-//        void changeNumberInBounds(T x) {
-//            number = x > maxNumber ? maxNumber : x;
-//            number = x < minNumber ? minNumber : x;
-//        }
-//    };
+class Bird : public sf::Drawable {
 
 public:
     //functions
@@ -31,13 +19,13 @@ public:
 
     void changeY(float step);
 
-    sf::Sprite getSprite() const;
-
     void setVelocity(float num);
 
     void changeVelocity(float num);
 
     void change();
+
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
 private:
     //functions

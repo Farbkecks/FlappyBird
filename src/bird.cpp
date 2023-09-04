@@ -28,10 +28,6 @@ void Bird::changeToBirdDown() {
     }
 }
 
-sf::Sprite Bird::getSprite() const {
-    return birdSprite;
-}
-
 void Bird::update() {
     if (velocity > 0) {
         changeToBirdUp();
@@ -93,5 +89,9 @@ void Bird::changeVelocity(float num) {
 
 void Bird::change() {
     changeY(velocity);
+}
+
+void Bird::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+    target.draw(birdSprite);
 }
 
