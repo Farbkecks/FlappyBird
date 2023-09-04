@@ -5,10 +5,12 @@
 #include "pipe.h"
 #include "print.h"
 
+#include "constants.h"
+
 class Engine {
 public:
     //functions
-    Engine(unsigned int height, unsigned int width, const sf::String &title);
+    Engine();
 
     void input();
 
@@ -23,7 +25,6 @@ private:
 
 private:
     //variables
-    sf::Vector2<unsigned int> resolution;
     sf::RenderWindow window;
 
     Bird bird;

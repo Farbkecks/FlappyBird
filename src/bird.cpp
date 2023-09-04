@@ -1,15 +1,15 @@
 #include "bird.h"
 
-Bird::Bird(const sf::Vector2f &pos, const sf::String &path, const sf::Vector2u &windowSize)
+Bird::Bird(const sf::Vector2u &windowSize)
         : windowSize(windowSize), velocity(0) {
-    birdUp.loadFromFile(path, {0, 0, 255, 180});
-    birdDown.loadFromFile(path, {255, 0, 255, 180});
+    birdUp.loadFromFile(constants::bird::path, constants::bird::birdUpArea);
+    birdDown.loadFromFile(constants::bird::path, constants::bird::birdDownArea);
 
     birdSprite.setTexture(birdUp);
     birdTextureIsUp = true;
 
-    birdSprite.setScale({0.3, 0.3});
-    position = pos;
+    birdSprite.setScale({constants::bird::scale, constants::bird::scale});
+    position = constants::bird::startPos;
 
     update();
 }
@@ -61,19 +61,18 @@ void Bird::checkForBounds() {
 
 float Bird::checkVelocityBounds(float num) {
     float results;
-    const float maxNumber = 20;
-    const float minNumber = -13;
 
-    if (maxNumber < minNumber) {
+
+    if (constants::bird::maxVelocity < constants::bird::minVelocity) {
         print("velocity Bounds incorrect");
     }
 
     results = num;
-    if (num > maxNumber) {
-        results = maxNumber;
+    if (num > constants::bird::maxVelocity) {
+        results = constants::bird::maxVelocity;
     }
-    if (num < minNumber) {
-        results = minNumber;
+    if (num < constants::bird::minVelocity) {
+        results = constants::bird::minVelocity;
     }
 
     return results;

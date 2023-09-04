@@ -1,14 +1,13 @@
 #include "pipe.h"
 
-Pipe::Pipe(const sf::String &path) {
-    float scale = 0.5;
+Pipe::Pipe() {
 
-    texture.loadFromFile(path);
+    texture.loadFromFile(constants::pipe::path);
     spriteTop.setTexture(texture);
-    spriteTop.setScale(scale, scale);
+    spriteTop.setScale(constants::pipe::scale, constants::pipe::scale);
     spriteTop.setRotation(180);
     spriteBottom.setTexture(texture);
-    spriteBottom.setScale(scale, scale);
+    spriteBottom.setScale(constants::pipe::scale, constants::pipe::scale);
 
 }
 

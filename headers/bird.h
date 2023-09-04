@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-
+#include "constants.h"
 #include "print.h"
 
 
@@ -9,7 +9,7 @@ class Bird : public sf::Drawable {
 
 public:
     //functions
-    explicit Bird(const sf::Vector2f &pos, const sf::String &path, const sf::Vector2u &windowSize);
+    explicit Bird(const sf::Vector2u &windowSize);
 
     void changeToBirdUp();
 
