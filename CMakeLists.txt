@@ -3,7 +3,12 @@ project(FlappyBird)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(FlappyBird src/main.cpp src/engine.cpp)
+add_executable(FlappyBird src/main.cpp src/engine.cpp
+        src/engineDraw.cpp
+        src/engineUpdate.cpp
+        src/bird.cpp
+        headers/bird.h
+        headers/print.h)
 
 #Warning check if correct Path
 include_directories(headers c:/SFML/include)

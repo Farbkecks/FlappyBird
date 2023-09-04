@@ -2,22 +2,18 @@
 
 Engine::Engine(unsigned int height, unsigned int width, const sf::String &title)
         : resolution(height, width),
-          window(sf::VideoMode(resolution.y, resolution.x), title) {
-
-    //TODO make better path
-    birdUp.loadFromFile("assets/FlappyBird.png", {0, 0, 255, 180});
-    birdDown.loadFromFile("assets/FlappyBird.png", {255, 0, 255, 180});
-//    bird.loadFromFile("assets/FlappyBird.png");
-    birdSprite.setTexture(birdUp);
-
+          window(sf::VideoMode(resolution.y, resolution.x), title),
+          bird({100, 400}, "assets/FlappyBird.png") {
+    window.setFramerateLimit(60);
 }
 
 void Engine::run() {
+    sf::Clock clock;
     while (window.isOpen()) {
-        window.clear(sf::Color::White);
-        window.draw(birdSprite);
-        window.display();
+        timeSinceLastMove += clock.restart();
         input();
+        update();
+        draw();
     }
 }
 
@@ -38,10 +34,10 @@ void Engine::input() {
                 window.close();
             }
             if (event.key.code == sf::Keyboard::A) {
-                birdSprite.setTexture(birdUp);
+                bird.changeToBirdUp();
             }
             if (event.key.code == sf::Keyboard::D) {
-                birdSprite.setTexture(birdDown);
+                bird.changeToBirdDown();
             }
         }
     }

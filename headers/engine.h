@@ -1,7 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <string>
+#include "bird.h"
+#include "print.h"
 
 class Engine {
 public:
@@ -10,6 +11,10 @@ public:
 
     void input();
 
+    void update();
+
+    void draw();
+
     void run();
 
 private:
@@ -17,10 +22,10 @@ private:
 
 private:
     //variables
-    sf::Vector2f resolution;
+    sf::Vector2<unsigned int> resolution;
     sf::RenderWindow window;
-    sf::Texture birdUp;
-    sf::Texture birdDown;
-    sf::Sprite birdSprite;
 
+    Bird bird;
+
+    sf::Time timeSinceLastMove;
 };
