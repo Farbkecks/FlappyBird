@@ -3,7 +3,8 @@
 Engine::Engine(unsigned int height, unsigned int width, const sf::String &title)
         : resolution(height, width),
           window(sf::VideoMode(resolution.y, resolution.x), title, sf::Style::Close),
-          bird({200, 400}, "assets/FlappyBird.png", window.getSize()) {
+          bird({200, 400}, "assets/FlappyBird.png", window.getSize()),
+          pipe("assets/pipe.png") {
     window.setFramerateLimit(144);
 }
 

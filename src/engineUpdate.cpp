@@ -8,6 +8,7 @@ void Engine::update() {
     }
     bird.changeVelocity(-1);
     bird.change();
+    pipe.setPostion({200, 400}, 200);
     timeSinceLastMove = sf::Time::Zero;
 
 }

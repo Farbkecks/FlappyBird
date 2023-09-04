@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "bird.h"
+#include "pipe.h"
 #include "print.h"
 
 class Engine {
@@ -26,6 +27,8 @@ private:
     sf::RenderWindow window;
 
     Bird bird;
+
+    Pipe pipe;
 
     sf::Time timeSinceLastMove;
 };

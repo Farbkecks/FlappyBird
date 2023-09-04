@@ -8,7 +8,10 @@ add_executable(FlappyBird src/main.cpp src/engine.cpp
         src/engineUpdate.cpp
         src/bird.cpp
         headers/bird.h
-        headers/print.h)
+        headers/print.h
+        src/pipe.cpp
+        headers/pipe.h
+        src/pipe.cpp)
 
 #Warning check if correct Path
 include_directories(headers c:/SFML/include)
