@@ -32,10 +32,10 @@ void Engine::input() {
         // Handle Keyboard Input
         if (event.type == Event::KeyPressed) {
             // Quit
-            if (event.key.code == sf::Keyboard::Escape) {
+            if (event.key.code == constants::input::closeButton) {
                 window.close();
             }
-            if (event.key.code == sf::Keyboard::Space) {
+            if (event.key.code == constants::input::jumpButton) {
                 bird.setVelocity(constants::bird::jumpVelocity);
             }
         }

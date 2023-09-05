@@ -25,4 +25,9 @@ namespace constants {
         //TODO put usefully numbers
         const auto updateCycle = sf::seconds(.1f / 7.2).asSeconds();
     }
+
+    namespace input {
+        const auto closeButton = sf::Keyboard::Escape;
+        const auto jumpButton = sf::Keyboard::Space;
+    }
 }
