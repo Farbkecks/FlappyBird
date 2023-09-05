@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "constants.h"
 #include "print.h"
+#include <utility>
 
 
 class Bird : public sf::Drawable {
@@ -22,6 +23,9 @@ public:
     void changeYWithCurrentVelocity();
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+
+    std::pair<float, float> getMinMaxY() const;
+
 
 private:
     //functions

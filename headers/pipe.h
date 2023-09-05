@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "print.h"
 #include "constants.h"
+#include <utility>
 
 class Pipe : public sf::Drawable {
 public:
@@ -12,6 +13,8 @@ public:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
     void setPostion(const sf::Vector2f &pos, float distance);
+
+    bool collision(const std::pair<float, float> &minMax) const;
 
 private:
     //functions

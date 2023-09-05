@@ -3,7 +3,7 @@
 #include "engine.h"
 
 int main() {
-    Engine engine();
+    Engine engine;
     engine.run();
 
     return 0;

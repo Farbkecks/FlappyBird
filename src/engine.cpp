@@ -19,6 +19,7 @@ void Engine::run() {
     }
 }
 
+
 void Engine::input() {
     using namespace sf;
     Event event{};
@@ -35,9 +36,18 @@ void Engine::input() {
             if (event.key.code == constants::input::closeButton) {
                 window.close();
             }
+#ifdef debug
+            if (event.key.code == sf::Keyboard::W) {
+                bird.changeY(10);
+            }
+            if (event.key.code == sf::Keyboard::S) {
+                bird.changeY(-10);
+            }
+#else
             if (event.key.code == constants::input::jumpButton) {
                 bird.setVelocity(constants::bird::jumpVelocity);
             }
+#endif
         }
     }
 }

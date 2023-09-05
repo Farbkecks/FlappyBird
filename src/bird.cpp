@@ -94,3 +94,10 @@ void Bird::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(birdSprite);
 }
 
+std::pair<float, float> Bird::getMinMaxY() const {
+    return {
+            birdSprite.getGlobalBounds().top,
+            birdSprite.getGlobalBounds().top + birdSprite.getGlobalBounds().height
+    };
+}
+

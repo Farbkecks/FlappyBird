@@ -1,5 +1,7 @@
 #pragma once
 
+//#define debug
+
 #include <SFML/Graphics.hpp>
 #include "bird.h"
 #include "pipe.h"
