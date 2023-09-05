@@ -11,7 +11,7 @@ Bird::Bird(const sf::Vector2u &windowSize)
     birdSprite.setScale({constants::bird::scale, constants::bird::scale});
     position = constants::bird::startPos;
 
-    update();
+    updateSprite();
 }
 
 void Bird::changeToBirdUp() {
@@ -28,28 +28,28 @@ void Bird::changeToBirdDown() {
     }
 }
 
-void Bird::update() {
+void Bird::updateSprite() {
     if (velocity > 0) {
         changeToBirdUp();
     } else {
         changeToBirdDown();
     }
 
-    checkForBounds();
+    checkPostionBounds();
     birdSprite.setPosition(position);
 }
 
 void Bird::setPosition(const sf::Vector2f &pos) {
     position = pos;
-    update();
+    updateSprite();
 }
 
 void Bird::changeY(float step) {
     position.y -= step;
-    update();
+    updateSprite();
 }
 
-void Bird::checkForBounds() {
+void Bird::checkPostionBounds() {
     if (position.y < 0) {
         position.y = 0;
     }
@@ -86,7 +86,7 @@ void Bird::changeVelocity(float num) {
     velocity = checkVelocityBounds(velocity += num);
 }
 
-void Bird::change() {
+void Bird::changeYWithCurrentVelocity() {
     changeY(velocity);
 }
 

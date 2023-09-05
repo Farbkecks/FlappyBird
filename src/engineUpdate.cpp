@@ -6,7 +6,7 @@ void Engine::update() {
         return;
     }
     bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
-    bird.change();
+    bird.changeYWithCurrentVelocity();
     pipe.setPostion({200, 400}, 200);
     timeSinceLastMove = sf::Time::Zero;
 

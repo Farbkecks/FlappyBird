@@ -11,10 +11,6 @@ public:
     //functions
     explicit Bird(const sf::Vector2u &windowSize);
 
-    void changeToBirdUp();
-
-    void changeToBirdDown();
-
     void setPosition(const sf::Vector2f &pos);
 
     void changeY(float step);
@@ -23,15 +19,20 @@ public:
 
     void changeVelocity(float num);
 
-    void change();
+    void changeYWithCurrentVelocity();
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
 private:
     //functions
-    void update();
 
-    void checkForBounds();
+    void changeToBirdUp();
+
+    void changeToBirdDown();
+
+    void updateSprite();
+
+    void checkPostionBounds();
 
     float static checkVelocityBounds(float num);
 
