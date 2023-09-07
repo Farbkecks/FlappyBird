@@ -32,3 +32,8 @@ bool Pipe::collision(const std::pair<float, float> &minMax) const {
     }
     return false;
 }
+
+Pipe::Pipe(const sf::Vector2f &pos, float distance) :
+Pipe(){
+    setPostion(pos, distance);
+}

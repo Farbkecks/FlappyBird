@@ -6,6 +6,7 @@
 #include "bird.h"
 #include "pipe.h"
 #include "print.h"
+#include <deque>
 
 #include "constants.h"
 
@@ -31,7 +32,7 @@ private:
 
     Bird bird;
 
-    Pipe pipe;
-
     sf::Time timeSinceLastMove;
+
+    std::deque<Pipe> pipes;
 };

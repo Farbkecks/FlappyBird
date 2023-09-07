@@ -8,7 +8,8 @@
 class Pipe : public sf::Drawable {
 public:
     //functions
-    explicit Pipe();
+    Pipe();
+    Pipe(const sf::Vector2f &pos, float distance);
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 

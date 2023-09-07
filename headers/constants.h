@@ -24,6 +24,7 @@ namespace constants {
         const sf::Vector2u resolution = {720, 1280};
         //TODO put usefully numbers
         const auto updateCycle = sf::seconds(.1f / 7.2).asSeconds();
+        const int startAmountPipes = 5;
     }
 
     namespace input {
