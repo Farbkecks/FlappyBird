@@ -16,15 +16,16 @@ namespace constants {
     namespace pipe {
         const sf::String path = "assets/pipe.png";
         const float scale = 0.5;
+        const int startAmountPipes = 5;
+        const float pipeStepPerUpdate = 1;
     }
 
     namespace engine {
         const unsigned int fps = 144;
         const sf::String titel = "Test";
-        const sf::Vector2u resolution = {720, 1280};
+        const sf::Vector2u resolution = {1280, 720};
         //TODO put usefully numbers
         const auto updateCycle = sf::seconds(.1f / 7.2).asSeconds();
-        const int startAmountPipes = 5;
     }
 
     namespace input {

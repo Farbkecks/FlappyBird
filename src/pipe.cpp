@@ -17,8 +17,9 @@ void Pipe::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 }
 
 void Pipe::setPostion(const sf::Vector2f &pos, float distance) {
-    spriteTop.setPosition({pos.x + spriteTop.getGlobalBounds().width, pos.y - distance / 2});
-    spriteBottom.setPosition({pos.x, pos.y + distance / 2});
+    postion = pos;
+    this->distance = distance;
+    updateSprite();
 }
 
 bool Pipe::collision(const std::pair<float, float> &minMax) const {
@@ -36,4 +37,19 @@ bool Pipe::collision(const std::pair<float, float> &minMax) const {
 Pipe::Pipe(const sf::Vector2f &pos, float distance) :
 Pipe(){
     setPostion(pos, distance);
+    updateSprite();
+}
+
+void Pipe::updateSprite() {
+    spriteTop.setPosition({postion.x + spriteTop.getGlobalBounds().width, postion.y - distance / 2});
+    spriteBottom.setPosition({postion.x, postion.y + distance / 2});
+}
+
+void Pipe::changeX(float step) {
+    postion.x += step;
+    updateSprite();
+}
+
+float Pipe::getX() const {
+    return postion.x;
 }

@@ -2,14 +2,14 @@
 
 Engine::Engine()
         : window(
-        sf::VideoMode(constants::engine::resolution.y, constants::engine::resolution.x),
+        sf::VideoMode(constants::engine::resolution.x, constants::engine::resolution.y),
         constants::engine::titel,
         sf::Style::Close),
-          bird(window.getSize()) {
+          bird(window.getSize()){
     window.setFramerateLimit(constants::engine::fps);
-    for(int i=0; i<constants::engine::startAmountPipes; i++){
-        sf::Vector2f pos = {(float)i*400,(float) constants::engine::resolution.y/4};
-        pipes.emplace_back(pos, 400);
+    for(int i=0; i<constants::pipe::startAmountPipes; i++){
+        sf::Vector2f pos = {(float)i*400,(float) constants::engine::resolution.y/2};
+        pipes.emplace_front(pos, 400);
     }
 }
 

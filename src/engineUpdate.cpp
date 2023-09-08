@@ -12,7 +12,13 @@ void Engine::update() {
     bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
     bird.changeYWithCurrentVelocity();
 #endif
-
+    for(auto & pipe: pipes){
+        pipe.changeX(constants::pipe::pipeStepPerUpdate);
+    }
+    if(pipes.front().getX() > (float) constants::engine::resolution.x){
+        pipes.pop_front();
+        pipes.emplace_back((sf::Vector2f ){0,(float) constants::engine::resolution.y/2}, 400);
+    }
 
     timeSinceLastMove = sf::Time::Zero;
 
