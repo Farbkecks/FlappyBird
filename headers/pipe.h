@@ -20,6 +20,7 @@ public:
 
     bool collision(const std::pair<float, float> &minMax) const;
 
+
 private:
     //functions
     void updateSprite();
