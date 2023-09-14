@@ -7,8 +7,8 @@ Engine::Engine()
         sf::Style::Close),
           bird(window.getSize()){
     window.setFramerateLimit(constants::engine::fps);
-    for(int i=0; i<constants::pipe::startAmountPipes; i++){
-        sf::Vector2f pos = {(float)i*400,(float) constants::engine::resolution.y/2};
+    for(int i=-1; i<constants::pipe::startAmountPipes; i++){
+        sf::Vector2f pos = {(float)i*constants::pipe::pipesDistance,(float) constants::engine::resolution.y/2};
         pipes.emplace_front(pos, 400);
     }
 }
