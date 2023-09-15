@@ -17,7 +17,7 @@ void Engine::update() {
     }
     if(pipes.front().getX() > (float) constants::pipe::pipesDistance * (constants::pipe::startAmountPipes-1)){
         pipes.pop_front();
-        pipes.emplace_back((sf::Vector2f ){-constants::pipe::pipesDistance,(float) constants::engine::resolution.y/2}, 400);
+        pipes.emplace_back(-constants::pipe::pipesDistance);
     }
 
     timeSinceLastMove = sf::Time::Zero;

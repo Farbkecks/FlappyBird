@@ -64,7 +64,7 @@ float Bird::checkVelocityBounds(float num) {
 
 
     if (constants::bird::maxVelocity < constants::bird::minVelocity) {
-        print("velocity Bounds incorrect");
+        helperFunktions::print("velocity Bounds incorrect");
     }
 
     results = num;
