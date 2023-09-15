@@ -36,9 +36,9 @@ private:
 
     sf::Time timeSinceLastMove;
 
-    std::deque<Pipe> pipes;
+    std::deque<std::shared_ptr<Pipe>> pipes;
 
-    int aktivePipeIndex;
+    std::shared_ptr<Pipe> aktivePipeIndex;
 };
 
 

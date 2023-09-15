@@ -7,24 +7,30 @@ void Engine::update() {
     }
 
 #ifdef debug
-    helperFunktions::print(pipes.at(aktivePipeIndex).collision(bird.getMinMaxY()));
+    helperFunktions::print(aktivePipeIndex->collision(bird.getMinMaxY()));
 #else
     bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
     bird.changeYWithCurrentVelocity();
 #endif
 
-    for (int i = 0; i < pipes.size(); i++) {
-        pipes.at(i).changeX(constants::pipe::pipeStepPerUpdate);
+    for (auto const &pipe: pipes) {
+        pipe->changeX(constants::pipe::pipeStepPerUpdate);
         if (
-                pipes.at(i).getX() + constants::pipe::pipeWidth ==
+                pipe->getX() + constants::pipe::pipeWidth ==
                 constants::bird::startPos.x
                 ) {
-            aktivePipeIndex = i;
+            aktivePipeIndex = pipe;
         }
     }
-    if (pipes.front().getX() > (float) constants::pipe::pipesDistance * (constants::pipe::startAmountPipes)) {
+
+    if (pipes.front()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
         pipes.pop_front();
-        pipes.emplace_back(-constants::pipe::pipesDistance);
+        pipes.push_back(std::make_shared<Pipe>(-constants::pipe::pipesDistance));
+    }
+
+    if (pipes.back()->getX() < (float) -constants::pipe::pipesDistance) {
+        pipes.pop_back();
+        pipes.push_front(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
     timeSinceLastMove = sf::Time::Zero;
 

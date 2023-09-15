@@ -5,12 +5,12 @@ Engine::Engine()
         sf::VideoMode(constants::engine::resolution.x, constants::engine::resolution.y),
         constants::engine::titel,
         sf::Style::Close),
-          bird(window.getSize()),
-          aktivePipeIndex(0) {
+          bird(window.getSize()) {
     window.setFramerateLimit(constants::engine::fps);
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
-        pipes.emplace_front((float) i * constants::pipe::pipesDistance);
+        pipes.push_front(std::make_shared<Pipe>((float) i * constants::pipe::pipesDistance));
     }
+    aktivePipeIndex = pipes.back();
 }
 
 void Engine::run() {

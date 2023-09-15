@@ -28,7 +28,7 @@ namespace constants {
         const float scale = 0.5;
         const int startAmountPipes = 6;
         const int pipesDistance = 300;
-        const float pipeStepPerUpdate = 1;
+        const float pipeStepPerUpdate = -1;
         const sf::Vector2f pipeDistanceRange = {200, 400};
         const sf::Vector2f PipeYPostionRange = {300, 600};
     }
