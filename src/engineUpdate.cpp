@@ -15,7 +15,7 @@ void Engine::update() {
     for(auto & pipe: pipes){
         pipe.changeX(constants::pipe::pipeStepPerUpdate);
     }
-    if(pipes.front().getX() > (float) constants::pipe::pipesDistance * (constants::pipe::startAmountPipes-1)){
+    if(pipes.front().getX() > (float) constants::pipe::pipesDistance * (constants::pipe::startAmountPipes)){
         pipes.pop_front();
         pipes.emplace_back(-constants::pipe::pipesDistance);
     }
