@@ -8,11 +8,12 @@ add_executable(FlappyBird src/main.cpp src/engine.cpp
         src/engineUpdate.cpp
         src/bird.cpp
         headers/bird.h
-        headers/print.h
+        headers/helperFuntions.h
         src/pipe.cpp
         headers/pipe.h
         src/pipe.cpp
         headers/constants.h
+        src/helperFunktions.cpp
 )
 
 # Copy dlls to build

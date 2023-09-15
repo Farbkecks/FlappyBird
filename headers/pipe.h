@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "print.h"
+#include "helperFuntions.h"
 #include "constants.h"
 #include <utility>
 
@@ -10,6 +10,7 @@ public:
     //functions
     Pipe();
     Pipe(const sf::Vector2f &pos, float distance);
+    Pipe(const float xPostion);
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 

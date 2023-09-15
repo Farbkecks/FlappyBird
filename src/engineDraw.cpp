@@ -10,6 +10,3 @@ void Engine::draw() {
     window.display();
 }
 
-float Engine::randomNum(sf::Vector2f range) {
-    return randomNum(range.x, range.y);
-}

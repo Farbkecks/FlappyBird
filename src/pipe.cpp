@@ -1,4 +1,5 @@
 #include "pipe.h"
+#include "helperFuntions.h"
 
 Pipe::Pipe() {
 
@@ -39,6 +40,13 @@ Pipe(){
     setPostion(pos, distance);
     updateSprite();
 }
+
+Pipe::Pipe(const float xPostion)
+:Pipe(
+        {xPostion, helperFunktions::randomNum(constants::pipe::PipeYPostionRange)},
+        helperFunktions::randomNum(constants::pipe::pipeDistanceRange)
+        )
+{}
 
 void Pipe::updateSprite() {
     spriteTop.setPosition({postion.x + spriteTop.getGlobalBounds().width, postion.y - distance / 2});
