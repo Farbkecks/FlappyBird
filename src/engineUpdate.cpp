@@ -16,8 +16,8 @@ void Engine::update() {
     for (auto const &pipe: pipes) {
         pipe->changeX(constants::pipe::pipeStepPerUpdate);
         if (
-                pipe->getX() + constants::pipe::pipeWidth ==
-                constants::bird::startPos.x
+                pipe->getX() + constants::pipe::pipeWidth == constants::bird::startPos.x ||
+                pipe->getX() == constants::bird::startPos.x + constants::bird::birdWidth
                 ) {
             aktivePipeIndex = pipe;
         }
