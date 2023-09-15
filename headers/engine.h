@@ -1,12 +1,14 @@
 #pragma once
 
-//#define debug
+#define debug
 
 #include <SFML/Graphics.hpp>
 #include "bird.h"
 #include "pipe.h"
 #include "helperFuntions.h"
 #include <deque>
+
+#include <memory>
 
 #include "constants.h"
 
@@ -35,6 +37,8 @@ private:
     sf::Time timeSinceLastMove;
 
     std::deque<Pipe> pipes;
+
+    int aktivePipeIndex;
 };
 
 

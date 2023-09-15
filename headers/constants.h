@@ -10,9 +10,10 @@ namespace constants {
     }
     namespace bird {
         const sf::String path = "assets/FlappyBird.png";
+        const int birdWidth = 76;
         const sf::IntRect birdUpArea = {0, 0, 255, 180};
         const sf::IntRect birdDownArea = {255, 0, 255, 180};
-        const sf::Vector2f startPos = {(float)engine::resolution.x/2, 400};
+        const sf::Vector2f startPos = {(float) engine::resolution.x / 2, 400};
         const float scale = 0.3;
 
         const float jumpVelocity = 15;
@@ -23,12 +24,13 @@ namespace constants {
 
     namespace pipe {
         const sf::String path = "assets/pipe.png";
+        const int pipeWidth = 80;
         const float scale = 0.5;
         const int startAmountPipes = 6;
         const int pipesDistance = 300;
         const float pipeStepPerUpdate = 1;
-        const sf::Vector2f pipeDistanceRange = {200,400};
-        const sf::Vector2f PipeYPostionRange = {300,600};
+        const sf::Vector2f pipeDistanceRange = {200, 400};
+        const sf::Vector2f PipeYPostionRange = {300, 600};
     }
 
     namespace input {

@@ -5,10 +5,11 @@ Engine::Engine()
         sf::VideoMode(constants::engine::resolution.x, constants::engine::resolution.y),
         constants::engine::titel,
         sf::Style::Close),
-          bird(window.getSize()){
+          bird(window.getSize()),
+          aktivePipeIndex(0) {
     window.setFramerateLimit(constants::engine::fps);
-    for(int i=-1; i<constants::pipe::startAmountPipes; i++){
-        pipes.emplace_front((float)i*constants::pipe::pipesDistance);
+    for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
+        pipes.emplace_front((float) i * constants::pipe::pipesDistance);
     }
 }
 
