@@ -18,6 +18,8 @@ add_executable(FlappyBird src/main.cpp src/engine.cpp
         headers/scene.h
         src/runningscene.cpp
         headers/runningscene.h
+        src/breakscene.cpp
+        headers/breakscene.h
 )
 
 # Copy dlls to build

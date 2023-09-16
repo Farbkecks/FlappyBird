@@ -41,5 +41,6 @@ namespace constants {
         const auto closeButton = sf::Keyboard::BackSpace;
         const auto jumpButton = sf::Keyboard::Space;
         const auto pauseButton = sf::Keyboard::Escape;
+        const auto resumeBreak = sf::Keyboard::Space;
     }
 }
