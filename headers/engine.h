@@ -1,6 +1,6 @@
 #pragma once
 
-#define debug
+//#define debug
 
 #include <SFML/Graphics.hpp>
 #include "bird.h"
@@ -13,6 +13,10 @@
 #include "constants.h"
 
 class Engine {
+
+    enum class gameState {
+        RUNNIING, PAUSED, GAMEOVER
+    };
 public:
     //functions
     Engine();
@@ -24,6 +28,8 @@ public:
     void draw();
 
     void run();
+
+    void pause();
 
 private:
     //functions
@@ -39,6 +45,8 @@ private:
     std::deque<std::shared_ptr<Pipe>> pipes;
 
     std::shared_ptr<Pipe> aktivePipeIndex;
+
+    gameState status;
 };
 
 

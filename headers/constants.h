@@ -34,7 +34,8 @@ namespace constants {
     }
 
     namespace input {
-        const auto closeButton = sf::Keyboard::Escape;
+        const auto closeButton = sf::Keyboard::BackSpace;
         const auto jumpButton = sf::Keyboard::Space;
+        const auto pauseButton = sf::Keyboard::Escape;
     }
 }

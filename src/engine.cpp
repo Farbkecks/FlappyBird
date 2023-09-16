@@ -5,7 +5,8 @@ Engine::Engine()
         sf::VideoMode(constants::engine::resolution.x, constants::engine::resolution.y),
         constants::engine::titel,
         sf::Style::Close),
-          bird(window.getSize()) {
+          bird(window.getSize()),
+          status(gameState::RUNNIING) {
     window.setFramerateLimit(constants::engine::fps);
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
         pipes.push_front(std::make_shared<Pipe>((float) i * constants::pipe::pipesDistance));
@@ -23,7 +24,6 @@ void Engine::run() {
     }
 }
 
-
 void Engine::input() {
     using namespace sf;
     Event event{};
@@ -39,6 +39,9 @@ void Engine::input() {
             // Quit
             if (event.key.code == constants::input::closeButton) {
                 window.close();
+            }
+            if (event.key.code == constants::input::pauseButton) {
+                status = gameState::PAUSED;
             }
 #ifdef debug
             if (event.key.code == sf::Keyboard::W) {
