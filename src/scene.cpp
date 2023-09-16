@@ -23,7 +23,6 @@ void Scene::run(const sf::Time &timeSinceLast) {
     update();
 
     draw();
-    window->display();
 }
 
 Scene::Scene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)

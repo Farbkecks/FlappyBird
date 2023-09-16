@@ -18,9 +18,11 @@ void Engine::run() {
         auto timeSinceLastMove = clock.restart();
         switch (*status) {
             case constants::gameState::RUNNIING:
+                helperFunktions::print("Game is Running");
                 runningScene.run(timeSinceLastMove);
                 break;
             case constants::gameState::PAUSED:
+                helperFunktions::print("Game is on pause");
                 breakScene.run(timeSinceLastMove);
                 break;
         }

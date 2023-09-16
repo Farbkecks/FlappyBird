@@ -48,7 +48,7 @@ void RunningScene::draw() {
     for (auto const &pipe: pipes) {
         window->draw(*pipe);
     }
-
+    window->display();
 }
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
