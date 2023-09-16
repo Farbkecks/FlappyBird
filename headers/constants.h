@@ -1,6 +1,10 @@
 #pragma once
 
 namespace constants {
+    enum class gameState {
+        RUNNIING, PAUSED, GAMEOVER
+    };
+
     namespace engine {
         const unsigned int fps = 144;
         const sf::String titel = "Test";

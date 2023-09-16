@@ -8,9 +8,9 @@
 class Scene {
 //funktions
 public:
-    Scene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
+    explicit Scene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
 
-    void run();
+    void run(const sf::Time &timeSinceLast);
 
 //funktions
 protected:
@@ -22,8 +22,8 @@ protected:
 
 
 //variables
-private:
+protected:
     std::shared_ptr<sf::RenderWindow> window;
     std::shared_ptr<constants::gameState> status;
-
+    sf::Time timeSinceLast;
 };

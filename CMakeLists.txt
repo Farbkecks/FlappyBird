@@ -4,8 +4,6 @@ project(FlappyBird)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(FlappyBird src/main.cpp src/engine.cpp
-        src/engineDraw.cpp
-        src/engineUpdate.cpp
         src/bird.cpp
         headers/bird.h
         headers/helperFuntions.h
@@ -14,6 +12,12 @@ add_executable(FlappyBird src/main.cpp src/engine.cpp
         src/pipe.cpp
         headers/constants.h
         src/helperFunktions.cpp
+        src/scene.cpp
+        headers/scene.h
+        src/scene.cpp
+        headers/scene.h
+        src/runningscene.cpp
+        headers/runningscene.h
 )
 
 # Copy dlls to build
@@ -40,16 +44,16 @@ if (WIN32)
     file(COPY ${MINGW_DEP_DLLS} DESTINATION ${CMAKE_BINARY_DIR})
 endif ()
 if (APPLE)
-message(Apple)
-#Warning check if correct Path
-include_directories(headers /opt/homebrew/Cellar/sfml/2.6.0/include)
+    message(Apple)
+    #Warning check if correct Path
+    include_directories(headers /opt/homebrew/Cellar/sfml/2.6.0/include)
 
-#Warning check if correct Path
-set(SFML_ROOT /opt/homebrew/Cellar/sfml)
-set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
-find_package(SFML REQUIRED system window graphics)
-if (SFML_FOUND)
-    include_directories(${SFML_INCLUDE_DIR})
-    target_link_libraries(FlappyBird ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
-endif ()
+    #Warning check if correct Path
+    set(SFML_ROOT /opt/homebrew/Cellar/sfml)
+    set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
+    find_package(SFML REQUIRED system window graphics)
+    if (SFML_FOUND)
+        include_directories(${SFML_INCLUDE_DIR})
+        target_link_libraries(FlappyBird ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+    endif ()
 endif ()

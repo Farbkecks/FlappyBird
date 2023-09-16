@@ -1,7 +1,8 @@
 #include "scene.h"
 
-void Scene::run() {
+void Scene::run(const sf::Time &timeSinceLast) {
     using namespace sf;
+    this->timeSinceLast = timeSinceLast;
     Event event{};
     while (window->pollEvent(event)) {
         // Window closed

@@ -1,60 +1,24 @@
 #include "engine.h"
 
 Engine::Engine()
-        : window(
+        : window(std::make_shared<sf::RenderWindow>(
         sf::VideoMode(constants::engine::resolution.x, constants::engine::resolution.y),
         constants::engine::titel,
-        sf::Style::Close),
-          bird(window.getSize()),
-          status(gameState::RUNNIING) {
-    window.setFramerateLimit(constants::engine::fps);
-    for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
-        pipes.push_front(std::make_shared<Pipe>((float) i * constants::pipe::pipesDistance));
-    }
-    aktivePipeIndex = pipes.back();
+        sf::Style::Close)),
+          status(std::make_shared<constants::gameState>(constants::gameState::RUNNIING)),
+          runningScene(window, status) {
+    window->setFramerateLimit(constants::engine::fps);
+
 }
 
 void Engine::run() {
     sf::Clock clock;
-    while (window.isOpen()) {
-        timeSinceLastMove += clock.restart();
-        input();
-        update();
-        draw();
-    }
-}
-
-void Engine::input() {
-    using namespace sf;
-    Event event{};
-
-    while (window.pollEvent(event)) {
-        // Window closed
-        if (event.type == Event::Closed) {
-            window.close();
-        }
-
-        // Handle Keyboard Input
-        if (event.type == Event::KeyPressed) {
-            // Quit
-            if (event.key.code == constants::input::closeButton) {
-                window.close();
+    while (window->isOpen()) {
+        auto timeSinceLastMove = clock.restart();
+        switch (*status) {
+            case constants::gameState::RUNNIING: {
+                runningScene.run(timeSinceLastMove);
             }
-            if (event.key.code == constants::input::pauseButton) {
-                status = gameState::PAUSED;
-            }
-#ifdef debug
-            if (event.key.code == sf::Keyboard::W) {
-                bird.changeY(10);
-            }
-            if (event.key.code == sf::Keyboard::S) {
-                bird.changeY(-10);
-            }
-#else
-            if (event.key.code == constants::input::jumpButton) {
-                bird.setVelocity(constants::bird::jumpVelocity);
-            }
-#endif
         }
     }
 }
