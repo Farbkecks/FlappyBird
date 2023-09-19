@@ -20,7 +20,7 @@ add_executable(FlappyBird src/main.cpp src/engine.cpp
         headers/runningscene.h
         src/breakscene.cpp
         headers/breakscene.h
-        headers/ghostpipe.cpp
+        src/ghostpipe.cpp
         headers/ghostpipe.h
 )
 
