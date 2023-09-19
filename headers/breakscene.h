@@ -17,5 +17,7 @@ protected:
 
 //variables
 private:
-
+    sf::Font font;
+    sf::Text text;
+    bool drawn;
 };
