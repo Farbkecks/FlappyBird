@@ -43,4 +43,11 @@ namespace constants {
         const auto pauseButton = sf::Keyboard::Escape;
         const auto resumeBreak = sf::Keyboard::Space;
     }
+
+    namespace breakScene {
+        const sf::String path = "assets/ArialBlack.ttf";
+        const int textSize = 30;
+        const sf::String text = "press space to continue";
+        const auto textColor = sf::Color::Red;
+    }
 }

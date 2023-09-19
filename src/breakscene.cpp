@@ -22,11 +22,11 @@ void BreakScene::draw() {
 
 BreakScene::BreakScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status) : Scene(
         window, status), drawn(false) {
-    font.loadFromFile("assets/ArialBlack.ttf");
+    font.loadFromFile(constants::breakScene::path);
     text.setFont(font);
-    text.setCharacterSize(30);
-    text.setString("press space to continue");
-    text.setFillColor(sf::Color::Red);
+    text.setCharacterSize(constants::breakScene::textSize);
+    text.setString(constants::breakScene::text);
+    text.setFillColor(constants::breakScene::textColor);
     text.setPosition(constants::engine::resolution.x / 2 - text.getLocalBounds().getSize().x / 2,
                      constants::engine::resolution.y / 2 - text.getLocalBounds().getSize().y / 2);
 
