@@ -35,18 +35,21 @@ bool Pipe::collision(const std::pair<float, float> &minMax) const {
     return false;
 }
 
+bool Pipe::collision(const Bird &bird) const {
+    return collision(bird.getMinMaxY());
+}
+
 Pipe::Pipe(const sf::Vector2f &pos, float distance) :
-Pipe(){
+        Pipe() {
     setPostion(pos, distance);
     updateSprite();
 }
 
 Pipe::Pipe(const float xPostion)
-:Pipe(
+        : Pipe(
         {xPostion, helperFunktions::randomNum(constants::pipe::PipeYPostionRange)},
         helperFunktions::randomNum(constants::pipe::pipeDistanceRange)
-        )
-{}
+) {}
 
 void Pipe::updateSprite() {
     spriteTop.setPosition({postion.x + spriteTop.getGlobalBounds().width, postion.y - distance / 2});

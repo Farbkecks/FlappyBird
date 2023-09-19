@@ -23,6 +23,9 @@ void Engine::run() {
             case constants::gameState::PAUSED:
                 breakScene.run(timeSinceLastMove);
                 break;
+            case constants::gameState::GAMEOVER:
+                helperFunktions::print("Gameover");
+                break;
         }
     }
 }

@@ -37,6 +37,12 @@ void RunningScene::update() {
         pipes.pop_back();
         pipes.push_front(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
+
+    helperFunktions::print(aktivePipeIndex->collision(bird));
+    if (aktivePipeIndex->collision(bird)) {
+        *status = constants::gameState::GAMEOVER;
+    }
+
     timeSinceLastBirdMove = sf::Time::Zero;
 
 }
@@ -48,6 +54,17 @@ void RunningScene::draw() {
     for (auto const &pipe: pipes) {
         window->draw(*pipe);
     }
+
+    //TODO Remove
+    //Debug draw aktiv pipe
+//    auto x = sf::RectangleShape({1, 2000});
+//    x.setPosition(aktivePipeIndex->getX(), 0);
+//    window->draw(x);
+//
+//    auto y = sf::RectangleShape({1, 2000});
+//    y.setPosition(aktivePipeIndex->getX() + constants::pipe::pipeWidth, 0);
+//    window->draw(y);
+
     window->display();
 }
 
