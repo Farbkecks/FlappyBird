@@ -47,10 +47,11 @@ namespace constants {
         const auto resumeBreak = sf::Keyboard::Space;
     }
 
-    namespace breakScene {
+    namespace breakAndGameoverScene {
         const sf::String path = "assets/ArialBlack.ttf";
         const int textSize = 30;
-        const sf::String text = "press space to continue";
+        const sf::String textBreak = "press space to continue";
+        const sf::String textGameover = "press space to restart";
         const auto textColor = sf::Color::Red;
     }
 }

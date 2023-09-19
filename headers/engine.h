@@ -8,6 +8,7 @@
 
 #include "runningscene.h"
 #include "breakscene.h"
+#include "gameoverscene.h"
 
 class Engine {
 
@@ -27,6 +28,7 @@ private:
     std::shared_ptr<constants::gameState> status;
     RunningScene runningScene;
     BreakScene breakScene;
+    GameOverScene gameOverScene;
 };
 
 

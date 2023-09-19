@@ -22,6 +22,8 @@ add_executable(FlappyBird src/main.cpp src/engine.cpp
         headers/breakscene.h
         src/ghostpipe.cpp
         headers/ghostpipe.h
+        src/gameoverscene.cpp
+        headers/gameoverscene.h
 )
 
 #Warning check if correct Path

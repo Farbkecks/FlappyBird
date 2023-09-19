@@ -7,7 +7,8 @@ Engine::Engine()
         sf::Style::Close)),
           status(std::make_shared<constants::gameState>(constants::gameState::RUNNIING)),
           runningScene(window, status),
-          breakScene(window, status) {
+          breakScene(window, status),
+          gameOverScene(window, status) {
     window->setFramerateLimit(constants::engine::fps);
 
 }
@@ -24,7 +25,7 @@ void Engine::run() {
                 breakScene.run(timeSinceLastMove);
                 break;
             case constants::gameState::GAMEOVER:
-                helperFunktions::print("Gameover");
+                gameOverScene.run(timeSinceLastMove);
                 break;
         }
     }
