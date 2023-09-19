@@ -4,12 +4,16 @@
 Pipe::Pipe() {
 
     texture.loadFromFile(constants::pipe::path);
+    updateSpriteTextrue();
+
+}
+
+void Pipe::updateSpriteTextrue() {
     spriteTop.setTexture(texture);
     spriteTop.setScale(constants::pipe::scale, constants::pipe::scale);
     spriteTop.setRotation(180);
     spriteBottom.setTexture(texture);
     spriteBottom.setScale(constants::pipe::scale, constants::pipe::scale);
-
 }
 
 void Pipe::draw(sf::RenderTarget &target, sf::RenderStates states) const {

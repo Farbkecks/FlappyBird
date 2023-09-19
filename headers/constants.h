@@ -36,6 +36,9 @@ namespace constants {
         const sf::Vector2f pipeDistanceRange = {200, 400};
         const sf::Vector2f PipeYPostionRange = {300, 600};
     }
+    namespace ghostPipe {
+        const sf::String path = "assets/pipeGhost.png";
+    }
 
     namespace input {
         const auto closeButton = sf::Keyboard::BackSpace;

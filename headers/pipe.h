@@ -23,20 +23,23 @@ public:
 
     float getX() const;
 
-    bool collision(const std::pair<float, float> &minMax) const;
+    virtual bool collision(const std::pair<float, float> &minMax) const;
 
-    bool collision(const Bird &bird) const;
+    virtual bool collision(const Bird &bird) const;
 
 
-private:
+protected:
     //functions
     void updateSprite();
 
-private:
+    void updateSpriteTextrue();
+
+protected:
     //variables
     sf::Texture texture;
     sf::Sprite spriteTop;
     sf::Sprite spriteBottom;
     sf::Vector2f postion;
+
     float distance;
 };

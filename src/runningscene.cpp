@@ -38,7 +38,6 @@ void RunningScene::update() {
         pipes.push_front(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
 
-    helperFunktions::print(aktivePipeIndex->collision(bird));
     if (aktivePipeIndex->collision(bird)) {
         *status = constants::gameState::GAMEOVER;
     }
@@ -71,7 +70,7 @@ void RunningScene::draw() {
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
         : Scene(window, status), bird(window->getSize()) {
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
-        pipes.push_front(std::make_shared<Pipe>((float) i * constants::pipe::pipesDistance));
+        pipes.push_front(std::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
     }
     aktivePipeIndex = pipes.back();
 }

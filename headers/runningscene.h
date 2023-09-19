@@ -3,6 +3,7 @@
 #include "scene.h"
 #include "bird.h"
 #include "pipe.h"
+#include "ghostpipe.h"
 #include "helperFuntions.h"
 
 #include <deque>
