@@ -49,11 +49,11 @@ namespace constants {
         const auto changeDirection = sf::Keyboard::Enter;
     }
 
-    namespace breakAndGameoverScene {
+    namespace text {
         const sf::String path = "assets/ArialBlack.ttf";
         const int textSize = 30;
-        const sf::String textBreak = "press space to continue";
-        const sf::String textGameover = "press enter to restart";
         const auto textColor = sf::Color::Red;
+        const sf::String textBreak = "Jump: Space\nDirektion: Enter\nClose: Backspace\n\npress space to continue";
+        const sf::String textGameover = "press enter to restart";
     }
 }

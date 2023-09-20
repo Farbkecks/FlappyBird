@@ -23,11 +23,11 @@ void GameOverScene::draw() {
 GameOverScene::GameOverScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
         : Scene(
         window, status), drawn(false) {
-    font.loadFromFile(constants::breakAndGameoverScene::path);
+    font.loadFromFile(constants::text::path);
     text.setFont(font);
-    text.setCharacterSize(constants::breakAndGameoverScene::textSize);
-    text.setString(constants::breakAndGameoverScene::textGameover);
-    text.setFillColor(constants::breakAndGameoverScene::textColor);
+    text.setCharacterSize(constants::text::textSize);
+    text.setString(constants::text::textGameover);
+    text.setFillColor(constants::text::textColor);
     text.setPosition(constants::engine::resolution.x / 2 - text.getLocalBounds().getSize().x / 2,
                      constants::engine::resolution.y / 2 - text.getLocalBounds().getSize().y / 2);
 

@@ -107,6 +107,7 @@ void RunningScene::addStartetPipes() {
 }
 
 void RunningScene::reset() {
+    direktion = FORWARD;
     bird.setPosition(constants::bird::startPos);
     pipes.clear();
     addStartetPipes();
