@@ -41,7 +41,7 @@ private:
 
     std::deque<std::shared_ptr<Pipe>> pipes;
 
-    std::shared_ptr<Pipe> aktivePipeIndex;
+    std::weak_ptr<Pipe> aktivePipe;
 
     Direktion direktion;
 

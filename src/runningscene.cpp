@@ -40,7 +40,7 @@ void RunningScene::update() {
         pipes.push_front(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
 
-    if (aktivePipeIndex && aktivePipeIndex->collision(bird)) {
+    if (not aktivePipe.expired() && aktivePipe.lock()->collision(bird)) {
         *status = constants::gameState::GAMEOVER;
     }
 
@@ -52,19 +52,19 @@ void RunningScene::findeAktivePipe(const std::shared_ptr<Pipe> &pipe) {
     if (pipe->getX() + constants::pipe::pipeWidth == constants::bird::startPos.x) {
         switch (direktion) {
             case FORWARD:
-                aktivePipeIndex = nullptr;
+                aktivePipe.reset();
                 break;
             case BACKWARD:
-                aktivePipeIndex = pipe;
+                aktivePipe = pipe;
                 break;
         }
     } else if (pipe->getX() == constants::bird::startPos.x + constants::bird::birdWidth) {
         switch (direktion) {
             case FORWARD:
-                aktivePipeIndex = pipe;
+                aktivePipe = pipe;
                 break;
             case BACKWARD:
-                aktivePipeIndex = nullptr;
+                aktivePipe.reset();
                 break;
         }
     }
@@ -82,13 +82,13 @@ void RunningScene::draw() {
 
     //TODO Remove
     //Debug draw aktiv pipe
-    if (aktivePipeIndex) {
+    if (not aktivePipe.expired()) {
         auto x = sf::RectangleShape({1, 2000});
-        x.setPosition(aktivePipeIndex->getX(), 0);
+        x.setPosition(aktivePipe.lock()->getX(), 0);
         window->draw(x);
 
         auto y = sf::RectangleShape({1, 2000});
-        y.setPosition(aktivePipeIndex->getX() + constants::pipe::pipeWidth, 0);
+        y.setPosition(aktivePipe.lock()->getX() + constants::pipe::pipeWidth, 0);
         window->draw(y);
     }
 
@@ -107,7 +107,6 @@ void RunningScene::addStartetPipes() {
 }
 
 void RunningScene::reset() {
-    aktivePipeIndex = nullptr;
     bird.setPosition(constants::bird::startPos);
     pipes.clear();
     addStartetPipes();
