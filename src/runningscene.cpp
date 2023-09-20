@@ -107,6 +107,7 @@ void RunningScene::addStartetPipes() {
 }
 
 void RunningScene::reset() {
+    aktivePipeIndex = nullptr;
     bird.setPosition(constants::bird::startPos);
     pipes.clear();
     addStartetPipes();
