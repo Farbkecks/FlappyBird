@@ -69,8 +69,18 @@ void RunningScene::draw() {
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
         : Scene(window, status), bird(window->getSize()) {
+    addStartetPipes();
+}
+
+void RunningScene::addStartetPipes() {
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
-        pipes.push_front(std::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
+        pipes.push_front(std::__1::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
     }
     aktivePipeIndex = pipes.back();
+}
+
+void RunningScene::reset() {
+    bird.setPosition(constants::bird::startPos);
+    pipes.clear();
+    addStartetPipes();
 }

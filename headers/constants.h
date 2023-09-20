@@ -20,10 +20,10 @@ namespace constants {
         const sf::Vector2f startPos = {(float) engine::resolution.x / 2, 400};
         const float scale = 0.3;
 
-        const float jumpVelocity = 15;
+        const float jumpVelocity = 12;
         const float stepChangeVelocityPerUpdate = -1;
         const float maxVelocity = 20;
-        const float minVelocity = -13;
+        const float minVelocity = -10;
     }
 
     namespace pipe {
@@ -45,13 +45,14 @@ namespace constants {
         const auto jumpButton = sf::Keyboard::Space;
         const auto pauseButton = sf::Keyboard::Escape;
         const auto resumeBreak = sf::Keyboard::Space;
+        const auto restartButton = sf::Keyboard::Enter;
     }
 
     namespace breakAndGameoverScene {
         const sf::String path = "assets/ArialBlack.ttf";
         const int textSize = 30;
         const sf::String textBreak = "press space to continue";
-        const sf::String textGameover = "press space to restart";
+        const sf::String textGameover = "press enter to restart";
         const auto textColor = sf::Color::Red;
     }
 }

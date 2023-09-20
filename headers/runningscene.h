@@ -13,6 +13,8 @@ class RunningScene : public Scene {
 public:
     RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
 
+    void reset();
+
 //funktions
 protected:
     void input(sf::Event event) override;
@@ -21,8 +23,12 @@ protected:
 
     void draw() override;
 
+private:
+    void addStartetPipes();
+
 //variables
 private:
+
     Bird bird;
 
     sf::Time timeSinceLastBirdMove;
@@ -30,5 +36,4 @@ private:
     std::deque<std::shared_ptr<Pipe>> pipes;
 
     std::shared_ptr<Pipe> aktivePipeIndex;
-
 };
