@@ -27,12 +27,7 @@ void RunningScene::update() {
 
     for (auto const &pipe: pipes) {
         pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion));
-        if (
-                pipe->getX() + constants::pipe::pipeWidth == constants::bird::startPos.x ||
-                pipe->getX() == constants::bird::startPos.x + constants::bird::birdWidth
-                ) {
-            aktivePipeIndex = pipe;
-        }
+        findeAktivePipe(pipe);
     }
 
     if (pipes.front()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
@@ -52,6 +47,30 @@ void RunningScene::update() {
     timeSinceLastBirdMove = sf::Time::Zero;
 
 }
+
+void RunningScene::findeAktivePipe(const std::shared_ptr<Pipe> &pipe) {
+    if (pipe->getX() + constants::pipe::pipeWidth == constants::bird::startPos.x) {
+        switch (direktion) {
+            case FORWARD:
+                aktivePipeIndex = nullptr;
+                break;
+            case BACKWARD:
+                aktivePipeIndex = pipe;
+                break;
+        }
+    } else if (pipe->getX() == constants::bird::startPos.x + constants::bird::birdWidth) {
+        switch (direktion) {
+            case FORWARD:
+                aktivePipeIndex = pipe;
+                break;
+            case BACKWARD:
+                aktivePipeIndex = nullptr;
+                break;
+        }
+    }
+
+}
+
 
 void RunningScene::draw() {
     window->clear(sf::Color::Blue);

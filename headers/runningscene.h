@@ -44,4 +44,6 @@ private:
     std::shared_ptr<Pipe> aktivePipeIndex;
 
     Direktion direktion;
+
+    void findeAktivePipe(const std::shared_ptr<Pipe> &pipe);
 };
