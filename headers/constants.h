@@ -46,6 +46,7 @@ namespace constants {
         const auto pauseButton = sf::Keyboard::Escape;
         const auto resumeBreak = sf::Keyboard::Space;
         const auto restartButton = sf::Keyboard::Enter;
+        const auto changeDirection = sf::Keyboard::Enter;
     }
 
     namespace breakAndGameoverScene {

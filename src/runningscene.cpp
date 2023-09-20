@@ -7,6 +7,13 @@ void RunningScene::input(sf::Event event) {
     if (event.key.code == constants::input::jumpButton) {
         bird.setVelocity(constants::bird::jumpVelocity);
     }
+    if (event.key.code == constants::input::changeDirection) {
+        if (direktion == FORWARD) {
+            direktion = BACKWARD;
+        } else if (direktion == BACKWARD) {
+            direktion = FORWARD;
+        }
+    }
 }
 
 void RunningScene::update() {
@@ -19,7 +26,7 @@ void RunningScene::update() {
     bird.changeYWithCurrentVelocity();
 
     for (auto const &pipe: pipes) {
-        pipe->changeX(constants::pipe::pipeStepPerUpdate);
+        pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion));
         if (
                 pipe->getX() + constants::pipe::pipeWidth == constants::bird::startPos.x ||
                 pipe->getX() == constants::bird::startPos.x + constants::bird::birdWidth
@@ -38,7 +45,7 @@ void RunningScene::update() {
         pipes.push_front(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
 
-    if (aktivePipeIndex->collision(bird)) {
+    if (aktivePipeIndex && aktivePipeIndex->collision(bird)) {
         *status = constants::gameState::GAMEOVER;
     }
 
@@ -56,19 +63,21 @@ void RunningScene::draw() {
 
     //TODO Remove
     //Debug draw aktiv pipe
-//    auto x = sf::RectangleShape({1, 2000});
-//    x.setPosition(aktivePipeIndex->getX(), 0);
-//    window->draw(x);
-//
-//    auto y = sf::RectangleShape({1, 2000});
-//    y.setPosition(aktivePipeIndex->getX() + constants::pipe::pipeWidth, 0);
-//    window->draw(y);
+    if (aktivePipeIndex) {
+        auto x = sf::RectangleShape({1, 2000});
+        x.setPosition(aktivePipeIndex->getX(), 0);
+        window->draw(x);
+
+        auto y = sf::RectangleShape({1, 2000});
+        y.setPosition(aktivePipeIndex->getX() + constants::pipe::pipeWidth, 0);
+        window->draw(y);
+    }
 
     window->display();
 }
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(window, status), bird(window->getSize()) {
+        : Scene(window, status), bird(window->getSize()), direktion(FORWARD) {
     addStartetPipes();
 }
 
@@ -76,11 +85,19 @@ void RunningScene::addStartetPipes() {
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
         pipes.push_front(std::__1::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
     }
-    aktivePipeIndex = pipes.back();
 }
 
 void RunningScene::reset() {
     bird.setPosition(constants::bird::startPos);
     pipes.clear();
     addStartetPipes();
+}
+
+int RunningScene::dirketionToInt(RunningScene::Direktion direktion) {
+    switch (direktion) {
+        case FORWARD:
+            return 1;
+        case BACKWARD:
+            return -1;
+    }
 }
