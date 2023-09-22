@@ -43,6 +43,10 @@ bool Pipe::collision(const Bird &bird) const {
     return collision(bird.getMinMaxY());
 }
 
+bool Pipe::collision(float yPos) const {
+    return Pipe::collision({yPos, yPos});
+}
+
 Pipe::Pipe(const sf::Vector2f &pos, float distance) :
         Pipe() {
     setPostion(pos, distance);
