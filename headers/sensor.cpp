@@ -12,18 +12,24 @@ void Sensor::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(x);
 }
 
-void Sensor::updateHitPoint(sf::Vector2f startPoint, const std::weak_ptr<Pipe> &pipe) {
-    if (pipe.expired()) {
-        helperFunktions::print("sensor wurde nullptr übergenen");
-        return;
-    }
+void Sensor::updateHitPoint(sf::Vector2f startPoint, const std::deque<std::shared_ptr<Pipe>> &pipes) {
+#include <vector>
 
-    while (startPoint.x < 10000 && startPoint.x > -10000) {
-        if (pipe.lock()->collision(startPoint)) {
-            hitPoint = startPoint;
-            return;
+    auto it = begin(pipes);
+
+    std::vector<sf::Vector2f> postions;
+
+    while (it != end(pipes)) {
+        if (startPoint.x > (*it)->getX()) {
+            it++;
+        }
+        if ((*it)->collision(startPoint)) {
+            postions.emplace_back(startPoint);
         }
         helperFunktions::addVector2f(startPoint, steps);
+    }
+    if (not postions.empty()) {
+        hitPoint = postions.at(0);
     }
 }
 

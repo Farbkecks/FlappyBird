@@ -50,9 +50,7 @@ void RunningScene::update() {
         *status = constants::gameState::GAMEOVER;
     }
 
-    if (not nextPipe.expired()) {
-        sensor.updateHitPoint(bird.getSchnabelPostion(), nextPipe);
-    }
+    sensor.updateHitPoint(bird.getSchnabelPostion(), pipes);
 
     timeSinceLastBirdMove = sf::Time::Zero;
 
@@ -93,7 +91,7 @@ void RunningScene::drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color) {
 
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(window, status), bird(window->getSize()), direktion(FORWARD), sensor({2, -1}) {
+        : Scene(window, status), bird(window->getSize()), direktion(FORWARD), sensor({1, 0}) {
     addStartetPipes();
 }
 
