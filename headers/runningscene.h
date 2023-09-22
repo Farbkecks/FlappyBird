@@ -32,6 +32,11 @@ private:
 
     static int dirketionToInt(Direktion direktion);
 
+    void findeAktivePipe(const std::shared_ptr<Pipe> &pipe);
+
+    void findNextPipe(const std::shared_ptr<Pipe> &pipe);
+
+    void findLastPipe(const std::shared_ptr<Pipe> &pipe);
 //variables
 private:
 
@@ -42,8 +47,10 @@ private:
     std::deque<std::shared_ptr<Pipe>> pipes;
 
     std::weak_ptr<Pipe> aktivePipe;
+    std::weak_ptr<Pipe> nextPipe;
+    std::weak_ptr<Pipe> lastPipe;
 
     Direktion direktion;
 
-    void findeAktivePipe(const std::shared_ptr<Pipe> &pipe);
+    void drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color);
 };
