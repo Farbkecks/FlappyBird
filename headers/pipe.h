@@ -25,7 +25,7 @@ public:
 
     virtual bool collision(const std::pair<float, float> &minMax) const;
 
-    virtual bool collision(const Bird &bird) const;
+    bool collision(const Bird &bird) const;
 
 
 protected:

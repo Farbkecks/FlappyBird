@@ -14,8 +14,6 @@ public:
 
     bool collision(const std::pair<float, float> &minMax) const override;
 
-    bool collision(const Bird &bird) const override;
-
 private:
     void updateTexture();
 };

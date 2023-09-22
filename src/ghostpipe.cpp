@@ -4,9 +4,6 @@ bool GhostPipe::collision(const std::pair<float, float> &minMax) const {
     return false;
 }
 
-bool GhostPipe::collision(const Bird &bird) const {
-    return false;
-}
 
 GhostPipe::GhostPipe() : Pipe() {
     updateTexture();
