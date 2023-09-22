@@ -1,6 +1,6 @@
 #include "ghostpipe.h"
 
-bool GhostPipe::collision(const std::pair<float, float> &minMax) const {
+bool GhostPipe::collisionOnY(const std::pair<float, float> &minMax) const {
     return false;
 }
 

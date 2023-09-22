@@ -5,7 +5,7 @@
 #include "pipe.h"
 #include "ghostpipe.h"
 #include "helperFuntions.h"
-
+#include "sensor.h"
 #include <deque>
 
 class RunningScene : public Scene {
@@ -51,6 +51,8 @@ private:
     std::weak_ptr<Pipe> lastPipe;
 
     Direktion direktion;
+
+    Sensor sensor;
 
     void drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color);
 };

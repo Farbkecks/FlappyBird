@@ -12,7 +12,7 @@ public:
     GhostPipe(float xPostion);
 
 
-    bool collision(const std::pair<float, float> &minMax) const override;
+    bool collisionOnY(const std::pair<float, float> &minMax) const override;
 
 private:
     void updateTexture();

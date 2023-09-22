@@ -23,12 +23,12 @@ public:
 
     float getX() const;
 
-    virtual bool collision(const std::pair<float, float> &minMax) const;
+    virtual bool collisionOnY(const std::pair<float, float> &minMax) const;
 
-    bool collision(const Bird &bird) const;
+    bool collisionOnY(const Bird &bird) const;
 
     //works also for GhostPipe
-    bool collision(float yPos) const;
+    bool collision(const sf::Vector2f &pos) const;
 
 protected:
     //functions

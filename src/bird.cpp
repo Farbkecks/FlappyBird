@@ -101,3 +101,14 @@ std::pair<float, float> Bird::getMinMaxY() const {
     };
 }
 
+sf::Vector2f Bird::getPostion() const {
+    return position;
+
+}
+
+sf::Vector2f Bird::getSchnabelPostion() const {
+    auto pos = getPostion();
+    helperFunktions::addVector2f(pos, {constants::bird::birdWidth, constants::bird::birdHeight / 2});
+    return pos;
+}
+

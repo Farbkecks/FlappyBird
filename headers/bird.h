@@ -14,6 +14,10 @@ public:
 
     void setPosition(const sf::Vector2f &pos);
 
+    sf::Vector2f getPostion() const;
+
+    sf::Vector2f getSchnabelPostion() const;
+
     void changeY(float step);
 
     void setVelocity(float num);

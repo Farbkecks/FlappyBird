@@ -15,6 +15,7 @@ namespace constants {
     namespace bird {
         const sf::String path = "assets/FlappyBird.png";
         const int birdWidth = 76;
+        const int birdHeight = 54;
         const sf::IntRect birdUpArea = {0, 0, 255, 180};
         const sf::IntRect birdDownArea = {255, 0, 255, 180};
         const sf::Vector2f startPos = {(float) engine::resolution.x / 2, 400};

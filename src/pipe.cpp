@@ -27,7 +27,7 @@ void Pipe::setPostion(const sf::Vector2f &pos, float distance) {
     updateSprite();
 }
 
-bool Pipe::collision(const std::pair<float, float> &minMax) const {
+bool Pipe::collisionOnY(const std::pair<float, float> &minMax) const {
     float min, max;
     std::tie(min, max) = minMax;
     if (spriteTop.getGlobalBounds().top + spriteTop.getGlobalBounds().height > min) {
@@ -39,12 +39,15 @@ bool Pipe::collision(const std::pair<float, float> &minMax) const {
     return false;
 }
 
-bool Pipe::collision(const Bird &bird) const {
-    return collision(bird.getMinMaxY());
+bool Pipe::collisionOnY(const Bird &bird) const {
+    return collisionOnY(bird.getMinMaxY());
 }
 
-bool Pipe::collision(float yPos) const {
-    return Pipe::collision({yPos, yPos});
+bool Pipe::collision(const sf::Vector2f &pos) const {
+    if (pos.x != getX()) {
+        return false;
+    }
+    return Pipe::collisionOnY({pos.y, pos.y});
 }
 
 Pipe::Pipe(const sf::Vector2f &pos, float distance) :

@@ -46,8 +46,12 @@ void RunningScene::update() {
     }
 
     //check for gameover
-    if (not aktivePipe.expired() && aktivePipe.lock()->collision(bird)) {
+    if (not aktivePipe.expired() && aktivePipe.lock()->collisionOnY(bird)) {
         *status = constants::gameState::GAMEOVER;
+    }
+
+    if (not nextPipe.expired()) {
+        sensor.updateHitPoint(bird.getSchnabelPostion(), nextPipe);
     }
 
     timeSinceLastBirdMove = sf::Time::Zero;
@@ -68,6 +72,8 @@ void RunningScene::draw() {
     drawPipeDebug(lastPipe, sf::Color::Black);
     drawPipeDebug(aktivePipe, sf::Color::White);
 
+    window->draw(sensor);
+
     window->display();
 }
 
@@ -87,7 +93,7 @@ void RunningScene::drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color) {
 
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(window, status), bird(window->getSize()), direktion(FORWARD) {
+        : Scene(window, status), bird(window->getSize()), direktion(FORWARD), sensor({2, -1}) {
     addStartetPipes();
 }
 
