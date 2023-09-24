@@ -30,19 +30,19 @@ void RunningScene::update() {
     for (auto const &pipe: pipes) {
         pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion));
         findeAktivePipe(pipe);
-        findLastPipe(pipe);
-        findNextPipe(pipe);
+//        findLastPipe(pipe);
+//        findNextPipe(pipe);
     }
 
     //delete and generate Pipes
-    if (pipes.front()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
-        pipes.pop_front();
-        pipes.push_back(std::make_shared<Pipe>(-constants::pipe::pipesDistance));
+    if (pipes.back()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
+        pipes.pop_back();
+        pipes.push_front(std::make_shared<Pipe>(-constants::pipe::pipesDistance));
     }
 
-    if (pipes.back()->getX() < (float) -constants::pipe::pipesDistance) {
-        pipes.pop_back();
-        pipes.push_front(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
+    if (pipes.front()->getX() < (float) -constants::pipe::pipesDistance) {
+        pipes.pop_front();
+        pipes.push_back(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
 
     //check for gameover
@@ -50,7 +50,12 @@ void RunningScene::update() {
         *status = constants::gameState::GAMEOVER;
     }
 
-    sensor.updateHitPoint(bird.getSchnabelPostion(), pipes);
+    // wenn ich die Pipes direkt als degue übergebe werden die pointer nicht übegeben
+    std::vector<std::shared_ptr<Pipe>> pipesVector;
+    for (const auto &pipe: pipes) {
+        pipesVector.emplace_back(pipe);
+    }
+    sensor.updateHitPoint(bird.getSchnabelPostion(), pipesVector);
 
     timeSinceLastBirdMove = sf::Time::Zero;
 
@@ -91,13 +96,13 @@ void RunningScene::drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color) {
 
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(window, status), bird(window->getSize()), direktion(FORWARD), sensor({1, 0}) {
+        : Scene(window, status), bird(window->getSize()), direktion(FORWARD), sensor({2, -1}) {
     addStartetPipes();
 }
 
 void RunningScene::addStartetPipes() {
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
-        pipes.push_front(std::__1::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
+        pipes.push_back(std::__1::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
     }
 }
 

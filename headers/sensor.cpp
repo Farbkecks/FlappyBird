@@ -12,29 +12,23 @@ void Sensor::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(x);
 }
 
-void Sensor::updateHitPoint(sf::Vector2f startPoint, const std::deque<std::shared_ptr<Pipe>> &pipes) {
-#include <vector>
-
+void Sensor::updateHitPoint(sf::Vector2f startPoint, const std::vector<std::shared_ptr<Pipe>> &pipes) {
     auto it = begin(pipes);
-
-    std::vector<sf::Vector2f> postions;
-
     while (it != end(pipes)) {
+        if ((*it)->collision(startPoint)) {
+            hitPoint = startPoint;
+            return;
+        }
+        helperFunktions::addVector2f(startPoint, steps);
         if (startPoint.x > (*it)->getX()) {
             it++;
         }
-        if ((*it)->collision(startPoint)) {
-            postions.emplace_back(startPoint);
-        }
-        helperFunktions::addVector2f(startPoint, steps);
-    }
-    if (not postions.empty()) {
-        hitPoint = postions.at(0);
     }
 }
 
 sf::Vector2f Sensor::getHitPoint() const {
     return hitPoint;
 }
+
 
 
