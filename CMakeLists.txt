@@ -26,6 +26,8 @@ add_executable(FlappyBird src/main.cpp src/engine.cpp
         headers/gameoverscene.h
         headers/sensor.cpp
         headers/sensor.h
+        src/network.cpp
+        headers/network.h
 )
 
 #Warning check if correct Path
