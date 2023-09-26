@@ -54,7 +54,9 @@ namespace constants {
         const sf::String path = "assets/ArialBlack.ttf";
         const int textSize = 30;
         const auto textColor = sf::Color::Red;
+        const sf::Vector2f scorePos = {20, 10};
         const sf::String textBreak = "Jump: Space\nDirektion: Enter\nClose: Backspace\n\npress space to continue";
         const sf::String textGameover = "press enter to restart";
+        const sf::String textScorePrefix = "Score: ";
     }
 }

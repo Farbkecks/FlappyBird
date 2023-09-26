@@ -55,4 +55,8 @@ private:
     Direktion direktion;
 
     std::vector<Sensor> sensoren;
+
+    int score;
+    sf::Font font;
+    sf::Text scoreText;
 };

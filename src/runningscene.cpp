@@ -1,4 +1,5 @@
 #include "runningscene.h"
+#include <string>
 
 void RunningScene::input(sf::Event event) {
     if (event.key.code == constants::input::pauseButton) {
@@ -36,14 +37,19 @@ void RunningScene::update() {
 
     //delete and generate Pipes
     if (pipes.back()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
+        score++;
         pipes.pop_back();
         pipes.push_front(std::make_shared<Pipe>(-constants::pipe::pipesDistance));
     }
 
     if (pipes.front()->getX() < (float) -constants::pipe::pipesDistance) {
+        score++;
         pipes.pop_front();
         pipes.push_back(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
+
+
+    scoreText.setString(constants::text::textScorePrefix + std::to_string(score));
 
     //check for gameover
     if (not aktivePipe.expired() && aktivePipe.lock()->collisionOnY(bird)) {
@@ -59,8 +65,6 @@ void RunningScene::update() {
         sensor.updateHitPoint(bird.getSchnabelPostion(), pipesVector);
     }
 
-    helperFunktions::print(sensoren.at(0).getDistance());
-
     timeSinceLastBirdMove = sf::Time::Zero;
 
 }
@@ -73,10 +77,14 @@ void RunningScene::draw() {
         window->draw(*pipe);
     }
 
+
+
     //Debug
     drawPipeDebug(aktivePipe, sf::Color::Black);
     for (const auto &sensor: sensoren)
         window->draw(sensor);
+
+    window->draw(scoreText);
 
     window->display();
 }
@@ -97,7 +105,15 @@ void RunningScene::drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color) {
 
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(window, status), bird(window->getSize()), direktion(FORWARD) {
+        : Scene(window, status), bird(window->getSize()), direktion(FORWARD), score(0) {
+
+    font.loadFromFile(constants::text::path);
+    scoreText.setFont(font);
+    scoreText.setCharacterSize(constants::text::textSize);
+    scoreText.setFillColor(constants::text::textColor);
+    scoreText.setPosition(constants::text::scorePos);
+    scoreText.setString(constants::text::textScorePrefix + "0");
+
     addStartetPipes();
     sensoren.emplace_back(Sensor({2, -1}));
     sensoren.emplace_back(Sensor({4, -1}));
@@ -114,6 +130,7 @@ void RunningScene::addStartetPipes() {
 
 void RunningScene::reset() {
     direktion = FORWARD;
+    score = 0;
     bird.setPosition(constants::bird::startPos);
     pipes.clear();
     addStartetPipes();
