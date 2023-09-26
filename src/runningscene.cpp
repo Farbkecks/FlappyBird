@@ -23,9 +23,6 @@ void RunningScene::update() {
         return;
     }
 
-    //change Bird y
-    bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
-    bird.changeYWithCurrentVelocity();
 
     //movePipe and find relevant pipe
     for (auto const &pipe: pipes) {
@@ -33,8 +30,10 @@ void RunningScene::update() {
         findeAktivePipe(pipe);
     }
 
+    //update score
     if (not aktivePipe.expired() && not aktivePipe.lock()->getAktive()) {
         score++;
+        scoreText.setString(constants::text::textScorePrefix + std::to_string(score));
         aktivePipe.lock()->setAktive();
     }
 
@@ -49,9 +48,6 @@ void RunningScene::update() {
         pipes.push_back(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
 
-
-    scoreText.setString(constants::text::textScorePrefix + std::to_string(score));
-
     //check for gameover
     if (not aktivePipe.expired() && aktivePipe.lock()->collisionOnY(bird)) {
         *status = constants::gameState::GAMEOVER;
@@ -65,6 +61,10 @@ void RunningScene::update() {
     for (auto &sensor: sensoren) {
         sensor.updateHitPoint(bird.getSchnabelPostion(), pipesVector);
     }
+    
+    //change Bird y
+    bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
+    bird.changeYWithCurrentVelocity();
 
     timeSinceLastBirdMove = sf::Time::Zero;
 
