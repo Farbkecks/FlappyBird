@@ -33,15 +33,18 @@ void RunningScene::update() {
         findeAktivePipe(pipe);
     }
 
+    if (not aktivePipe.expired() && not aktivePipe.lock()->getAktive()) {
+        score++;
+        aktivePipe.lock()->setAktive();
+    }
+
     //delete and generate Pipes
     if (pipes.back()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
-        score++;
         pipes.pop_back();
         pipes.push_front(std::make_shared<Pipe>(-constants::pipe::pipesDistance));
     }
 
     if (pipes.front()->getX() < (float) -constants::pipe::pipesDistance) {
-        score++;
         pipes.pop_front();
         pipes.push_back(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }

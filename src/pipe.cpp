@@ -1,7 +1,7 @@
 #include "pipe.h"
 #include "helperFuntions.h"
 
-Pipe::Pipe() {
+Pipe::Pipe() : wasAktive(false) {
 
     texture.loadFromFile(constants::pipe::path);
     updateSpriteTextrue();
@@ -74,4 +74,12 @@ void Pipe::changeX(float step) {
 
 float Pipe::getX() const {
     return postion.x;
+}
+
+void Pipe::setAktive() {
+    wasAktive = true;
+}
+
+bool Pipe::getAktive() const {
+    return wasAktive;
 }

@@ -30,6 +30,10 @@ public:
     //works also for GhostPipe
     bool collision(const sf::Vector2f &pos) const;
 
+    void setAktive();
+
+    bool getAktive() const;
+
 protected:
     //functions
     void updateSprite();
@@ -42,6 +46,6 @@ protected:
     sf::Sprite spriteTop;
     sf::Sprite spriteBottom;
     sf::Vector2f postion;
-
     float distance;
+    bool wasAktive;
 };
