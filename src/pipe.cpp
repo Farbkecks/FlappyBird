@@ -44,10 +44,10 @@ bool Pipe::collisionOnY(const Bird &bird) const {
 }
 
 bool Pipe::collision(const sf::Vector2f &pos) const {
-    if (pos.x != getX()) {
-        return false;
+    if (pos.x > getX() && pos.x < getX() + constants::pipe::pipeWidth) {
+        return Pipe::collisionOnY({pos.y, pos.y});
     }
-    return Pipe::collisionOnY({pos.y, pos.y});
+    return false;
 }
 
 Pipe::Pipe(const sf::Vector2f &pos, float distance) :

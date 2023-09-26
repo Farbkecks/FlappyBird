@@ -11,6 +11,9 @@ Sensor::Sensor(const sf::Vector2f &steps) :
 }
 
 void Sensor::draw(sf::RenderTarget &target, sf::RenderStates states) const {
+    if (hitPoint == sf::Vector2f({std::numeric_limits<float>::infinity(), std::numeric_limits<float>::infinity()})) {
+        return;
+    }
     auto addLine = [&](const sf::Vector2f &pos) {
         auto x = sf::RectangleShape(this->stepsToDraw);
         x.setPosition(pos);
@@ -36,15 +39,15 @@ void Sensor::updateHitPoint(sf::Vector2f point, const std::vector<std::shared_pt
                 point.x < 0 ||
                 point.y >= constants::engine::resolution.y ||
                 point.y < 0) {
-                this->hitPoint = this->startPoint;
+                this->hitPoint = {
+                        std::numeric_limits<float>::infinity(), std::numeric_limits<float>::infinity()};
             } else {
-
                 this->hitPoint = point;
             }
             return;
         }
         helperFunktions::addVector2f(point, steps);
-        if (point.x > (*it)->getX()) {
+        if (point.x > (*it)->getX() + constants::pipe::pipeWidth) {
             it++;
         }
     }
@@ -52,6 +55,14 @@ void Sensor::updateHitPoint(sf::Vector2f point, const std::vector<std::shared_pt
 
 sf::Vector2f Sensor::getHitPoint() const {
     return hitPoint;
+}
+
+float Sensor::getDistance() const {
+#include <cmath>
+
+    auto x = std::abs(startPoint.x - hitPoint.x);
+    auto y = std::abs(startPoint.y - hitPoint.y);
+    return sqrt(pow(x, 2) + pow(y, 2));
 }
 
 

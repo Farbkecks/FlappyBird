@@ -59,6 +59,8 @@ void RunningScene::update() {
         sensor.updateHitPoint(bird.getSchnabelPostion(), pipesVector);
     }
 
+    helperFunktions::print(sensoren.at(0).getDistance());
+
     timeSinceLastBirdMove = sf::Time::Zero;
 
 }
@@ -98,7 +100,9 @@ RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared
         : Scene(window, status), bird(window->getSize()), direktion(FORWARD) {
     addStartetPipes();
     sensoren.emplace_back(Sensor({2, -1}));
+    sensoren.emplace_back(Sensor({4, -1}));
     sensoren.emplace_back(Sensor({1, 0}));
+    sensoren.emplace_back(Sensor({4, 1}));
     sensoren.emplace_back(Sensor({2, 1}));
 }
 

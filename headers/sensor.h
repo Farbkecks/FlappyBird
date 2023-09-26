@@ -18,6 +18,8 @@ public:
 
     void updateHitPoint(sf::Vector2f point, const std::vector<std::shared_ptr<Pipe>> &pipes);
 
+    float getDistance() const;
+
 //funktions
 private:
 
