@@ -16,7 +16,7 @@ public:
 
     sf::Vector2f getHitPoint() const;
 
-    void updateHitPoint(sf::Vector2f startPoint, const std::vector<std::shared_ptr<Pipe>> &pipes);
+    void updateHitPoint(sf::Vector2f point, const std::vector<std::shared_ptr<Pipe>> &pipes);
 
 //funktions
 private:
@@ -26,5 +26,6 @@ private:
 private:
     sf::Vector2f hitPoint;
     sf::Vector2f steps;
+    sf::Vector2f startPoint;
 
 };

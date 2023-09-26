@@ -6,21 +6,40 @@ Sensor::Sensor(const sf::Vector2f &steps) :
 }
 
 void Sensor::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-    auto x = sf::RectangleShape({10, 10});
-    x.setPosition(hitPoint);
-    x.setFillColor(sf::Color::Red);
-    target.draw(x);
+    auto addLine = [&](const sf::Vector2f &pos) {
+        auto x = sf::RectangleShape(this->steps);
+        x.setPosition(pos);
+        x.setFillColor(sf::Color::Red);
+        target.draw(x);
+    };
+
+    sf::Vector2f point = startPoint;
+    while (point != hitPoint) {
+        addLine(point);
+        helperFunktions::addVector2f(point, steps);
+
+    }
 }
 
-void Sensor::updateHitPoint(sf::Vector2f startPoint, const std::vector<std::shared_ptr<Pipe>> &pipes) {
+void Sensor::updateHitPoint(sf::Vector2f point, const std::vector<std::shared_ptr<Pipe>> &pipes) {
+    this->startPoint = point;
+    this->hitPoint = point;
     auto it = begin(pipes);
     while (it != end(pipes)) {
-        if ((*it)->collision(startPoint)) {
-            hitPoint = startPoint;
+        if ((*it)->collision(point)) {
+            if (point.x >= constants::engine::resolution.x ||
+                point.x < 0 ||
+                point.y >= constants::engine::resolution.y ||
+                point.y < 0) {
+                this->hitPoint = this->startPoint;
+            } else {
+
+                this->hitPoint = point;
+            }
             return;
         }
-        helperFunktions::addVector2f(startPoint, steps);
-        if (startPoint.x > (*it)->getX()) {
+        helperFunktions::addVector2f(point, steps);
+        if (point.x > (*it)->getX()) {
             it++;
         }
     }
