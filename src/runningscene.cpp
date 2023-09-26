@@ -55,27 +55,26 @@ void RunningScene::update() {
     for (const auto &pipe: pipes) {
         pipesVector.emplace_back(pipe);
     }
-    sensor.updateHitPoint(bird.getSchnabelPostion(), pipesVector);
+    for (auto &sensor: sensoren) {
+        sensor.updateHitPoint(bird.getSchnabelPostion(), pipesVector);
+    }
 
     timeSinceLastBirdMove = sf::Time::Zero;
 
 }
 
 void RunningScene::draw() {
-    window->clear(sf::Color::Blue);
+    window->clear(sf::Color::White);
 
     window->draw(bird);
     for (auto const &pipe: pipes) {
         window->draw(*pipe);
     }
 
-    //TODO Remove
-    //Debug draw aktiv pipe
-    drawPipeDebug(nextPipe, sf::Color::Red);
-    drawPipeDebug(lastPipe, sf::Color::Black);
-    drawPipeDebug(aktivePipe, sf::Color::White);
-
-    window->draw(sensor);
+    //Debug
+    drawPipeDebug(aktivePipe, sf::Color::Black);
+    for (const auto &sensor: sensoren)
+        window->draw(sensor);
 
     window->display();
 }
@@ -96,8 +95,11 @@ void RunningScene::drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color) {
 
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(window, status), bird(window->getSize()), direktion(FORWARD), sensor({2, -1}) {
+        : Scene(window, status), bird(window->getSize()), direktion(FORWARD) {
     addStartetPipes();
+    sensoren.emplace_back(Sensor({2, -1}));
+    sensoren.emplace_back(Sensor({1, 0}));
+    sensoren.emplace_back(Sensor({2, 1}));
 }
 
 void RunningScene::addStartetPipes() {

@@ -54,5 +54,5 @@ private:
 
     Direktion direktion;
 
-    Sensor sensor;
+    std::vector<Sensor> sensoren;
 };

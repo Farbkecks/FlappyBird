@@ -26,6 +26,7 @@ private:
 private:
     sf::Vector2f hitPoint;
     sf::Vector2f steps;
+    sf::Vector2f stepsToDraw;
     sf::Vector2f startPoint;
 
 };
