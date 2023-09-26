@@ -25,4 +25,7 @@ namespace helperFunktions {
     float randomNum(sf::Vector2f range);
 
     sf::Vector2f addVector2f(sf::Vector2f &left, const sf::Vector2f &right);
+
+    //return number between 0 and 1
+    float sigmoid(float num);
 }

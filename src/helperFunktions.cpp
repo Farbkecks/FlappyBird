@@ -12,3 +12,9 @@ sf::Vector2f helperFunktions::addVector2f(sf::Vector2f &left, const sf::Vector2f
     left.y += right.y;
     return left;
 }
+
+float helperFunktions::sigmoid(float num) {
+#include <cmath>
+
+    return 1 / (1 + std::exp(-num));
+}
