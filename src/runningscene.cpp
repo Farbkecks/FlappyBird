@@ -31,8 +31,6 @@ void RunningScene::update() {
     for (auto const &pipe: pipes) {
         pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion));
         findeAktivePipe(pipe);
-//        findLastPipe(pipe);
-//        findNextPipe(pipe);
     }
 
     //delete and generate Pipes
@@ -166,33 +164,4 @@ void RunningScene::findeAktivePipe(const std::shared_ptr<Pipe> &pipe) {
         }
     }
 
-}
-
-void RunningScene::findNextPipe(const std::shared_ptr<Pipe> &pipe) {
-    if (pipe->getX() < constants::bird::startPos.x) {
-        return;
-    }
-    if (nextPipe.expired()) {
-        nextPipe = pipe;
-    }
-    if (not aktivePipe.expired() && aktivePipe.lock() == nextPipe.lock()) {
-        nextPipe.reset();
-    }
-    nextPipe = pipe;
-}
-
-void RunningScene::findLastPipe(const std::shared_ptr<Pipe> &pipe) {
-    if (pipe->getX() > constants::bird::startPos.x) {
-        return;
-    }
-    if (lastPipe.expired()) {
-        lastPipe = pipe;
-    }
-    if (not aktivePipe.expired() && aktivePipe.lock() == lastPipe.lock()) {
-        lastPipe = pipe;
-    }
-    if (pipe->getX() < lastPipe.lock()->getX()) {
-        return;
-    }
-    lastPipe = pipe;
 }
