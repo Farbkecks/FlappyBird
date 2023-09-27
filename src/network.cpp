@@ -29,7 +29,7 @@ bool Network::calculate(const std::vector<float> &inputs) const {
 }
 
 float Network::calculateNote(const Network::typeLayer &weight, const Network::typeLayer &input) {
-    if (weight.size() != 5 || input.size() != 5) {
+    if (weight.size() != input.size()) {
         helperFunktions::print("Network calculateNote wrong input size");
         std::exit(1);
     }
