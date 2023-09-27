@@ -62,3 +62,34 @@ Network::v2Float Network::createRandomFloatVector(int n, int l) {
     }
     return output;
 }
+
+Network::Iterator Network::Iterator::operator++(int) {
+    auto temp(*this);
+    ++(*this);
+    return temp;
+}
+
+Network::Iterator &Network::Iterator::operator++() {
+    coord.y++;
+    if (weight.at(coord.layer).at(coord.note).size() == coord.y) {
+        coord.y = 0;
+        coord.note++;
+    }
+    if (weight.at(coord.layer).size() == coord.note) {
+        coord.note = 0;
+        coord.layer++;
+    }
+    return *this;
+}
+
+bool Network::Iterator::Coord::operator==(const Network::Iterator::Coord &rhs) const {
+    return layer == rhs.layer && note == rhs.note && y == rhs.y;
+}
+
+bool Network::Iterator::Coord::operator!=(const Network::Iterator::Coord &rhs) const {
+    return layer != rhs.layer || note != rhs.note || y != rhs.y;
+}
+
+float &Network::Iterator::operator*() const {
+    return weight.at(coord.layer).at(coord.note).at(coord.y);
+}
