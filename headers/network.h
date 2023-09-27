@@ -46,10 +46,11 @@ public:
 
 //funktions
 public:
-    explicit Network(const v3Float &weights);
-
     Network();
 
+    explicit Network(const v3Float &weights);
+
+    Network(Network &lhs, Network &rhs);
 
     //5 input float
     bool calculate(const std::vector<float> &inputs) const;

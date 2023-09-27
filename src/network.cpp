@@ -14,6 +14,34 @@ Network::Network() {
     }
 }
 
+//TODO const iteraotr implementieren
+//eigentlic müssten lhs und rhs const sein aber keine Lust einen const iteraotr zu schreiben
+Network::Network(Network &lhs, Network &rhs) {
+    weights = {
+            {5, std::vector<float>(5)},
+            {2, std::vector<float>(5)}
+    };
+    auto lhsit = std::begin(lhs);
+    auto rhsit = std::begin(rhs);
+    for (auto &i: *this) {
+        auto percentage = helperFunktions::randomFloat(0, 1);
+        if (percentage < 0.1) {
+            i = helperFunktions::randomFloat(-1, 1);
+        } else if (percentage >= 0.1 && percentage < 0.55) {
+            i = *lhsit;
+        } else if (percentage >= 0.55) {
+            i = *rhsit;
+        }
+        lhsit++;
+        rhsit++;
+    }
+
+    if (lhsit != std::end(lhs) || rhsit != std::end(rhs)) {
+        helperFunktions::print("Network mutation constructor iterator wrong");
+        std::exit(1);
+    }
+}
+
 Network::v3Float Network::getWeights() const {
     return weights;
 }
