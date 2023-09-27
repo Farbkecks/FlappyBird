@@ -6,25 +6,32 @@
 
 class Network {
 public:
-    typedef std::vector<std::vector<std::vector<float>>> typeWeights;
-    typedef std::vector<float> typeLayer;
+    typedef std::vector<std::vector<std::vector<float>>> v3Float;
+    typedef std::vector<std::vector<float>> v2Float;
+    typedef std::vector<float> v1Float;
 //funktions
 public:
-    explicit Network(const typeWeights &weights);
+    explicit Network(const v3Float &weights);
+
+    Network();
 
 
     //5 input float
     bool calculate(const std::vector<float> &inputs) const;
 
-    typeWeights getWeights() const;
+    v3Float getWeights() const;
 
 //funktions
 private:
 
-    static float calculateNote(const Network::typeLayer &weight, const Network::typeLayer &input);
+    static float calculateNote(const Network::v1Float &weight, const Network::v1Float &input);
+
+    static v1Float createRandomFloatVector(int n);
+
+    static v2Float createRandomFloatVector(int n, int l);
     //variables
 private:
-    typeWeights weights;
+    v3Float weights;
 
 
 };

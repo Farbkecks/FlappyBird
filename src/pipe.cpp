@@ -58,8 +58,8 @@ Pipe::Pipe(const sf::Vector2f &pos, float distance) :
 
 Pipe::Pipe(const float xPostion)
         : Pipe(
-        {xPostion, helperFunktions::randomNum(constants::pipe::PipeYPostionRange)},
-        helperFunktions::randomNum(constants::pipe::pipeDistanceRange)
+        {xPostion, helperFunktions::randomInt(constants::pipe::PipeYPostionRange)},
+        helperFunktions::randomInt(constants::pipe::pipeDistanceRange)
 ) {}
 
 void Pipe::updateSprite() {
