@@ -50,7 +50,7 @@ float Network::calculateNote(const Network::v1Float &weight, const Network::v1Fl
 Network::v1Float Network::createRandomFloatVector(int n) {
     v1Float output(n);
     for (auto &note: output) {
-        note = helperFunktions::randomInt({-1, 1});
+        note = helperFunktions::randomFloat(-1, 1);
     }
     return output;
 }

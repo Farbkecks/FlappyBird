@@ -22,7 +22,9 @@ namespace helperFunktions {
         std::cout << std::endl;
     }
 
-    float randomInt(sf::Vector2i range);
+    float randomInt(sf::Vector2f range);
+
+    float randomFloat(const float LO, const float HI);
 
     sf::Vector2f addVector2f(sf::Vector2f &left, const sf::Vector2f &right);
 
