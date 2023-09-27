@@ -11,11 +11,7 @@ int main() {
 
     Network net;
     helperFunktions::print(net.calculate({0.4, 0.1, 0.6, 0.4, 0.9}));
-    int i;
-    for (auto &n: net) {
-        helperFunktions::print(i);
-        n = i++;
-    }
+
 
     return 0;
 }

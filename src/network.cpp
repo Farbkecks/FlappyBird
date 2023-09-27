@@ -6,9 +6,12 @@ Network::Network(const v3Float &weights)
 
 Network::Network() {
     weights = {
-            createRandomFloatVector(5, 5),
-            createRandomFloatVector(5, 2)
+            {5, std::vector<float>(5)},
+            {2, std::vector<float>(5)}
     };
+    for (auto &i: *this) {
+        i = helperFunktions::randomFloat(-1, 1);
+    }
 }
 
 Network::v3Float Network::getWeights() const {
@@ -45,22 +48,6 @@ float Network::calculateNote(const Network::v1Float &weight, const Network::v1Fl
         note += weight.at(i) * input.at(i);
     }
     return helperFunktions::sigmoid(note);
-}
-
-Network::v1Float Network::createRandomFloatVector(int n) {
-    v1Float output(n);
-    for (auto &note: output) {
-        note = helperFunktions::randomFloat(-1, 1);
-    }
-    return output;
-}
-
-Network::v2Float Network::createRandomFloatVector(int n, int l) {
-    v2Float output(l);
-    for (auto &note: output) {
-        note = createRandomFloatVector(n);
-    }
-    return output;
 }
 
 Network::Iterator Network::Iterator::operator++(int) {

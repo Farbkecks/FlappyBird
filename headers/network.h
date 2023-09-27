@@ -60,10 +60,6 @@ public:
 private:
 
     static float calculateNote(const Network::v1Float &weight, const Network::v1Float &input);
-
-    static v1Float createRandomFloatVector(int n);
-
-    static v2Float createRandomFloatVector(int n, int l);
     //variables
 private:
     v3Float weights;
