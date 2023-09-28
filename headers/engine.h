@@ -6,9 +6,9 @@
 
 #include "constants.h"
 
-#include "runningscene.h"
 #include "breakscene.h"
 #include "gameoverscene.h"
+#include "runningsceneplayer.h"
 
 class Engine {
 
@@ -26,7 +26,7 @@ private:
     //variables
     std::shared_ptr<sf::RenderWindow> window;
     std::shared_ptr<constants::gameState> status;
-    RunningScene runningScene;
+    RunningScenePlayer runningScenePlayer;
     BreakScene breakScene;
     GameOverScene gameOverScene;
 };

@@ -1,25 +1,9 @@
 #include "runningscene.h"
 #include <string>
 
-void RunningScene::input(sf::Event event) {
-    if (event.key.code == constants::input::pauseButton) {
-        *status = constants::gameState::PAUSED;
-    }
-    if (event.key.code == constants::input::jumpButton) {
-        bird.setVelocity(constants::bird::jumpVelocity);
-    }
-    if (event.key.code == constants::input::changeDirection) {
-        if (direktion == FORWARD) {
-            direktion = BACKWARD;
-        } else if (direktion == BACKWARD) {
-            direktion = FORWARD;
-        }
-    }
-}
-
 void RunningScene::update() {
-    timeSinceLastBirdMove += timeSinceLast;
-    if (timeSinceLastBirdMove.asSeconds() < constants::engine::updateCycle) {
+    timeSinceLastUpdateCycle += timeSinceLast;
+    if (timeSinceLastUpdateCycle.asSeconds() < constants::engine::updateCycle) {
         return;
     }
 
@@ -30,12 +14,6 @@ void RunningScene::update() {
         findeAktivePipe(pipe);
     }
 
-    //update score
-    if (not aktivePipe.expired() && not aktivePipe.lock()->getAktive()) {
-        score++;
-        scoreText.setString(constants::text::textScorePrefix + std::to_string(score));
-        aktivePipe.lock()->setAktive();
-    }
 
     //delete and generate Pipes
     if (pipes.back()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
@@ -48,44 +26,21 @@ void RunningScene::update() {
         pipes.push_back(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
     }
 
-    //check for gameover
-    if (not aktivePipe.expired() && aktivePipe.lock()->collisionOnY(bird)) {
-        *status = constants::gameState::GAMEOVER;
-    }
 
-    // wenn ich die Pipes direkt als degue übergebe werden die pointer nicht übegeben
-    std::vector<std::shared_ptr<Pipe>> pipesVector;
-    for (const auto &pipe: pipes) {
-        pipesVector.emplace_back(pipe);
-    }
-    for (auto &sensor: sensoren) {
-        sensor.updateHitPoint(bird.getSchnabelPostion(), pipesVector);
-    }
-    
-    //change Bird y
-    bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
-    bird.changeYWithCurrentVelocity();
+    deepUpdate();
 
-    timeSinceLastBirdMove = sf::Time::Zero;
+    timeSinceLastUpdateCycle = sf::Time::Zero;
 
 }
 
 void RunningScene::draw() {
     window->clear(sf::Color::White);
 
-    window->draw(bird);
     for (auto const &pipe: pipes) {
         window->draw(*pipe);
     }
 
-
-
-    //Debug
-    drawPipeDebug(aktivePipe, sf::Color::Black);
-    for (const auto &sensor: sensoren)
-        window->draw(sensor);
-
-    window->draw(scoreText);
+    deepDraw();
 
     window->display();
 }
@@ -106,21 +61,8 @@ void RunningScene::drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color) {
 
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(window, status), bird(window->getSize()), direktion(FORWARD), score(0) {
-
-    font.loadFromFile(constants::text::path);
-    scoreText.setFont(font);
-    scoreText.setCharacterSize(constants::text::textSize);
-    scoreText.setFillColor(constants::text::textColor);
-    scoreText.setPosition(constants::text::scorePos);
-    scoreText.setString(constants::text::textScorePrefix + "0");
-
+        : Scene(window, status), direktion(FORWARD) {
     addStartetPipes();
-    sensoren.emplace_back(Sensor({2, -1}));
-    sensoren.emplace_back(Sensor({4, -1}));
-    sensoren.emplace_back(Sensor({1, 0}));
-    sensoren.emplace_back(Sensor({4, 1}));
-    sensoren.emplace_back(Sensor({2, 1}));
 }
 
 void RunningScene::addStartetPipes() {
@@ -131,10 +73,9 @@ void RunningScene::addStartetPipes() {
 
 void RunningScene::reset() {
     direktion = FORWARD;
-    score = 0;
-    bird.setPosition(constants::bird::startPos);
     pipes.clear();
     addStartetPipes();
+    deepReset();
 }
 
 int RunningScene::dirketionToInt(RunningScene::Direktion direktion) {

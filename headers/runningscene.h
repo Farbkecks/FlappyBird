@@ -9,7 +9,7 @@
 #include <deque>
 
 class RunningScene : public Scene {
-
+protected:
     enum Direktion {
         FORWARD, BACKWARD
     };
@@ -19,13 +19,18 @@ public:
 
     void reset();
 
+    virtual void deepReset() = 0;
+
 //funktions
 protected:
-    void input(sf::Event event) override;
 
     void update() override;
 
+    virtual void deepUpdate() = 0;
+
     void draw() override;
+
+    virtual void deepDraw() = 0;
 
 private:
     void addStartetPipes();
@@ -34,24 +39,15 @@ private:
 
     void findeAktivePipe(const std::shared_ptr<Pipe> &pipe);
 
-
     void drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color);
 
 //variables
-private:
-
-    Bird bird;
-
-    sf::Time timeSinceLastBirdMove;
-
+protected:
+    sf::Time timeSinceLastUpdateCycle;
     std::deque<std::shared_ptr<Pipe>> pipes;
     std::weak_ptr<Pipe> aktivePipe;
 
     Direktion direktion;
 
-    std::vector<Sensor> sensoren;
 
-    int score;
-    sf::Font font;
-    sf::Text scoreText;
 };
