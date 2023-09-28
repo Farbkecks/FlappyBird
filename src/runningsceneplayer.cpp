@@ -2,7 +2,7 @@
 
 RunningScenePlayer::RunningScenePlayer(std::shared_ptr<sf::RenderWindow> window,
                                        std::shared_ptr<constants::gameState> status) :
-        RunningScene(window, status), bird(window->getSize()), score(0) {
+        RunningScene(window, status), bird(window->getSize()), score(0), drawDebug(false) {
     font.loadFromFile(constants::text::path);
     scoreText.setFont(font);
     scoreText.setCharacterSize(constants::text::textSize);
@@ -10,6 +10,11 @@ RunningScenePlayer::RunningScenePlayer(std::shared_ptr<sf::RenderWindow> window,
     scoreText.setPosition(constants::text::scorePos);
     scoreText.setString(constants::text::textScorePrefix + "0");
 
+    sensors.emplace_back(Sensor({4, 1}));
+    sensors.emplace_back(Sensor({2, 1}));
+    sensors.emplace_back(Sensor({1, 0}));
+    sensors.emplace_back(Sensor({2, -1}));
+    sensors.emplace_back(Sensor({4, -1}));
 }
 
 void RunningScenePlayer::input(sf::Event event) {
@@ -18,6 +23,9 @@ void RunningScenePlayer::input(sf::Event event) {
     }
     if (event.key.code == constants::input::jumpButton) {
         bird.setVelocity(constants::bird::jumpVelocity);
+    }
+    if (event.key.code == constants::input::drawDebug) {
+        drawDebug = !drawDebug;
     }
     if (event.key.code == constants::input::changeDirection) {
         if (direktion == FORWARD) {
@@ -46,11 +54,22 @@ void RunningScenePlayer::deepUpdate() {
     bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
     bird.changeYWithCurrentVelocity();
 
+    for (auto &sensor: sensors) {
+        sensor.updateHitPoint(bird.getSchnabelPostion(), pipes);
+    }
+
 }
 
 void RunningScenePlayer::deepDraw() {
     window->draw(bird);
     window->draw(scoreText);
+
+    if (drawDebug) {
+        drawPipeDebug(aktivePipe, sf::Color::Black);
+        for (auto const &sensor: sensors) {
+            window->draw(sensor);
+        }
+    }
 }
 
 void RunningScenePlayer::deepReset() {

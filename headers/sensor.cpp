@@ -29,7 +29,7 @@ void Sensor::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     }
 }
 
-void Sensor::updateHitPoint(sf::Vector2f point, const std::vector<std::shared_ptr<Pipe>> &pipes) {
+void Sensor::updateHitPoint(sf::Vector2f point, std::deque<std::shared_ptr<Pipe>> pipes) {
     this->startPoint = point;
     this->hitPoint = point;
     auto it = begin(pipes);

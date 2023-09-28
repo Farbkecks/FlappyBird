@@ -32,7 +32,6 @@ protected:
 
     virtual void deepDraw() = 0;
 
-private:
     void addStartetPipes();
 
     static int dirketionToInt(Direktion direktion);

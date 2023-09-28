@@ -48,6 +48,7 @@ namespace constants {
         const auto resumeBreak = sf::Keyboard::Space;
         const auto restartButton = sf::Keyboard::Enter;
         const auto changeDirection = sf::Keyboard::Enter;
+        const auto drawDebug = sf::Keyboard::D;
     }
 
     namespace text {

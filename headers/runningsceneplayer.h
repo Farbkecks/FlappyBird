@@ -22,9 +22,10 @@ private:
 private:
 
     Bird bird;
-
+    bool drawDebug;
     int score;
     sf::Font font;
     sf::Text scoreText;
 
+    std::vector<Sensor> sensors;
 };
