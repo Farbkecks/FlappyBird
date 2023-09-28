@@ -6,6 +6,7 @@
 #include "pipe.h"
 #include <deque>
 #include <vector>
+#include <memory>
 
 class Sensor : public sf::Drawable {
 //funktions

@@ -67,7 +67,7 @@ RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared
 
 void RunningScene::addStartetPipes() {
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
-        pipes.push_back(std::__1::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
+        pipes.push_back(std::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
     }
 }
 
