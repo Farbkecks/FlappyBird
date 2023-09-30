@@ -7,6 +7,12 @@
 #include "network.h"
 
 class RunningSceneBot : public RunningScene {
+    struct BirdWithNetwork {
+        Bird bird;
+        Network network;
+        std::vector<Sensor> sensors;
+    };
+
 public:
     //functions
     RunningSceneBot(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
@@ -24,11 +30,10 @@ protected:
 
     void input(sf::Event event) override;
 
+    static std::vector<Sensor> addSensors();
+
 
 private:
     //variables
-    Bird bird;
-    Network network;
-    std::vector<Sensor> sensors;
-
+    std::vector<BirdWithNetwork> birds;
 };

@@ -60,4 +60,8 @@ namespace constants {
         const sf::String textGameover = "press enter to restart";
         const sf::String textScorePrefix = "Score: ";
     }
+
+    namespace runningSceneBot {
+        const int birdAmount = 27;
+    }
 }

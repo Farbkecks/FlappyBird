@@ -2,12 +2,13 @@
 
 RunningSceneBot::RunningSceneBot(std::shared_ptr<sf::RenderWindow> window,
                                  std::shared_ptr<constants::gameState> status) :
-        RunningScene(window, status), bird(window->getSize()) {
-    sensors.emplace_back(Sensor({4, 1}));
-    sensors.emplace_back(Sensor({2, 1}));
-    sensors.emplace_back(Sensor({1, 0}));
-    sensors.emplace_back(Sensor({2, -1}));
-    sensors.emplace_back(Sensor({4, -1}));
+        RunningScene(window, status) {
+    for (int i = 0; i < constants::runningSceneBot::birdAmount; i++) {
+        birds.emplace_back(BirdWithNetwork({
+                                                   .bird = Bird(window->getSize()),
+                                                   .sensors = addSensors()
+                                           }));
+    }
 }
 
 void RunningSceneBot::deepReset() {
@@ -15,30 +16,28 @@ void RunningSceneBot::deepReset() {
 }
 
 void RunningSceneBot::deepUpdate() {
-    std::vector<float> sensorData;
-    for (auto &sen: sensors) {
-        sen.updateHitPoint(bird.getSchnabelPostion(), pipes);
-        sensorData.emplace_back(sen.getDistance());
+    for (auto &bird: birds) {
+
+        std::vector<float> sensorData;
+        for (auto &sen: bird.sensors) {
+            sen.updateHitPoint(bird.bird.getSchnabelPostion(), pipes);
+            sensorData.emplace_back(sen.getDistance());
+        }
+
+        if (bird.network.calculate(sensorData)) {
+            bird.bird.setVelocity(constants::bird::jumpVelocity);
+        }
+
+
+        bird.bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
+        bird.bird.changeYWithCurrentVelocity();
+
     }
-    helperFunktions::print(sensorData);
-    if (network.calculate(sensorData)) {
-        helperFunktions::print("true");
-        bird.setVelocity(constants::bird::jumpVelocity);
-    } else {
-        helperFunktions::print("false");
-    }
-
-
-    bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
-    bird.changeYWithCurrentVelocity();
-
 }
 
 void RunningSceneBot::deepDraw() {
-    window->draw(bird);
-
-    for (auto const &sen: sensors) {
-        window->draw(sen);
+    for (auto const &bird: birds) {
+        window->draw(bird.bird);
     }
 }
 
@@ -46,4 +45,14 @@ void RunningSceneBot::input(sf::Event event) {
     if (event.key.code == constants::input::pauseButton) {
         *status = constants::gameState::PAUSED;
     }
+}
+
+std::vector<Sensor> RunningSceneBot::addSensors() {
+    std::vector<Sensor> sensors;
+    sensors.emplace_back(Sensor({4, 1}));
+    sensors.emplace_back(Sensor({2, 1}));
+    sensors.emplace_back(Sensor({1, 0}));
+    sensors.emplace_back(Sensor({2, -1}));
+    sensors.emplace_back(Sensor({4, -1}));
+    return sensors;
 }
