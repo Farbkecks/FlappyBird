@@ -62,8 +62,5 @@ float Sensor::getDistance() const {
 
     auto x = std::abs(startPoint.x - hitPoint.x);
     auto y = std::abs(startPoint.y - hitPoint.y);
-    return sqrt(pow(x, 2) + pow(y, 2));
+    return (sqrt(pow(x, 2) + pow(y, 2))) + 1;
 }
-
-
-

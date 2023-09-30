@@ -2,7 +2,7 @@
 
 namespace constants {
     enum class gameState {
-        RUNNIING, PAUSED, GAMEOVER
+        RUNNIINGPLAYER, RUNNINGBOT, PAUSED, GAMEOVER
     };
 
     namespace engine {

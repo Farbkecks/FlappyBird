@@ -22,6 +22,8 @@ namespace helperFunktions {
         std::cout << std::endl;
     }
 
+    void print(const std::vector<float> &vec);
+
     float randomInt(sf::Vector2f range);
 
     float randomFloat(const float LO, const float HI);

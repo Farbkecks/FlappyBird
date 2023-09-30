@@ -22,3 +22,11 @@ float helperFunktions::sigmoid(float num) {
 float helperFunktions::randomFloat(const float LO, const float HI) {
     return LO + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (HI - LO)));
 }
+
+void helperFunktions::print(const std::vector<float> &vec) {
+    int i = 0;
+    for (const auto &x: vec) {
+        std::cout << i++ << ": " << x << "   ";
+    }
+    std::cout << std::endl;
+}

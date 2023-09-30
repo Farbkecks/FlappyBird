@@ -9,6 +9,7 @@
 #include "breakscene.h"
 #include "gameoverscene.h"
 #include "runningsceneplayer.h"
+#include "runningscenebot.h"
 
 class Engine {
 
@@ -27,8 +28,10 @@ private:
     std::shared_ptr<sf::RenderWindow> window;
     std::shared_ptr<constants::gameState> status;
     RunningScenePlayer runningScenePlayer;
+    RunningSceneBot runningSceneBot;
     BreakScene breakScene;
     GameOverScene gameOverScene;
+
 };
 
 

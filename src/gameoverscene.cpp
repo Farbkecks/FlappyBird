@@ -3,7 +3,7 @@
 
 void GameOverScene::input(sf::Event event) {
     if (event.key.code == constants::input::restartButton) {
-        *status = constants::gameState::RUNNIING;
+        *status = constants::gameState::RUNNIINGPLAYER;
         drawn = false;
     }
 }
