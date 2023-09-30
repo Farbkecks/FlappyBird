@@ -2,21 +2,27 @@
 
 RunningSceneBot::RunningSceneBot(std::shared_ptr<sf::RenderWindow> window,
                                  std::shared_ptr<constants::gameState> status) :
-        RunningScene(window, status) {
+        RunningScene(window, status), death(0) {
+    addBirdWithNetworkVector();
+}
+
+void RunningSceneBot::addBirdWithNetworkVector() {
     for (int i = 0; i < constants::runningSceneBot::birdAmount; i++) {
-        birds.emplace_back(BirdWithNetwork({
-                                                   .bird = Bird(window->getSize()),
-                                                   .sensors = addSensors()
-                                           }));
+        birdsWithNetwork.emplace_back(BirdWithNetwork({
+                                                              .bird = Bird(window->getSize()),
+                                                              .sensors = addSensors()
+                                                      }));
     }
 }
 
 void RunningSceneBot::deepReset() {
-
+    birdsWithNetwork.clear();
+    death = 0;
+    addBirdWithNetworkVector();
 }
 
 void RunningSceneBot::deepUpdate() {
-    for (auto &bird: birds) {
+    for (auto &bird: birdsWithNetwork) {
         if (bird.bird.getDeath()) {
             continue;
         }
@@ -37,13 +43,16 @@ void RunningSceneBot::deepUpdate() {
 
         if (not aktivePipe.expired() && aktivePipe.lock()->collisionOnY(bird.bird)) {
             bird.bird.setDeath();
+            death++;
         }
-
+    }
+    if (death >= constants::runningSceneBot::birdAmount) {
+        reset();
     }
 }
 
 void RunningSceneBot::deepDraw() {
-    for (auto const &bird: birds) {
+    for (auto const &bird: birdsWithNetwork) {
         if (not bird.bird.getDeath()) {
             window->draw(bird.bird);
         }

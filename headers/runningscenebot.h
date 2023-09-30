@@ -17,13 +17,10 @@ public:
     //functions
     RunningSceneBot(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
 
-
 protected:
     //functions
-public:
     void deepReset() override;
 
-protected:
     void deepUpdate() override;
 
     void deepDraw() override;
@@ -32,8 +29,11 @@ protected:
 
     static std::vector<Sensor> addSensors();
 
+    void addBirdWithNetworkVector();
 
 private:
     //variables
-    std::vector<BirdWithNetwork> birds;
+    std::vector<BirdWithNetwork> birdsWithNetwork;
+    int death;
+
 };
