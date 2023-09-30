@@ -1,7 +1,7 @@
 #include "bird.h"
 
 Bird::Bird(const sf::Vector2u &windowSize)
-        : windowSize(windowSize), velocity(0) {
+        : windowSize(windowSize), velocity(0), death(false), score(0) {
     birdUp.loadFromFile(constants::bird::path, constants::bird::birdUpArea);
     birdDown.loadFromFile(constants::bird::path, constants::bird::birdDownArea);
 
@@ -110,5 +110,22 @@ sf::Vector2f Bird::getSchnabelPostion() const {
     auto pos = getPostion();
     helperFunktions::addVector2f(pos, {constants::bird::birdWidth, constants::bird::birdHeight / 2});
     return pos;
+}
+
+void Bird::setDeath() {
+    death = true;
+}
+
+bool Bird::getDeath() const {
+    return death;
+}
+
+
+int Bird::getScore() const {
+    return score;
+}
+
+void Bird::incrementScore(int score) {
+    this->score += score;
 }
 

@@ -17,7 +17,10 @@ void RunningSceneBot::deepReset() {
 
 void RunningSceneBot::deepUpdate() {
     for (auto &bird: birds) {
-
+        if (bird.bird.getDeath()) {
+            continue;
+        }
+        bird.bird.incrementScore(1);
         std::vector<float> sensorData;
         for (auto &sen: bird.sensors) {
             sen.updateHitPoint(bird.bird.getSchnabelPostion(), pipes);
@@ -32,12 +35,18 @@ void RunningSceneBot::deepUpdate() {
         bird.bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
         bird.bird.changeYWithCurrentVelocity();
 
+        if (not aktivePipe.expired() && aktivePipe.lock()->collisionOnY(bird.bird)) {
+            bird.bird.setDeath();
+        }
+
     }
 }
 
 void RunningSceneBot::deepDraw() {
     for (auto const &bird: birds) {
-        window->draw(bird.bird);
+        if (not bird.bird.getDeath()) {
+            window->draw(bird.bird);
+        }
     }
 }
 

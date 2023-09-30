@@ -30,6 +30,14 @@ public:
 
     std::pair<float, float> getMinMaxY() const;
 
+    void setDeath();
+
+    bool getDeath() const;
+
+    void incrementScore(int score);
+
+    int getScore() const;
+
 
 private:
     //functions
@@ -53,4 +61,6 @@ private:
     sf::Vector2f position;
     const sf::Vector2u windowSize;
     float velocity;
+    int score;
+    bool death;
 };
