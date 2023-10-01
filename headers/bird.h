@@ -36,7 +36,12 @@ public:
 
     void incrementScore(int score);
 
+
     int getScore() const;
+
+    Bird &operator=(const Bird &other);
+
+    void reset();
 
 
 private:
@@ -56,10 +61,10 @@ private:
     //variables
     sf::Texture birdUp;
     sf::Texture birdDown;
-    bool birdTextureIsUp;
-    sf::Sprite birdSprite;
-    sf::Vector2f position;
     const sf::Vector2u windowSize;
+    sf::Sprite birdSprite;
+    bool birdTextureIsUp;
+    sf::Vector2f position;
     float velocity;
     int score;
     bool death;

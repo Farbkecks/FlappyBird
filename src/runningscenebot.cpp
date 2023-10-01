@@ -16,9 +16,32 @@ void RunningSceneBot::addBirdWithNetworkVector() {
 }
 
 void RunningSceneBot::deepReset() {
-    birdsWithNetwork.clear();
+    std::sort(birdsWithNetwork.begin(), birdsWithNetwork.end());
+    auto it = birdsWithNetwork.end();
+    std::vector<Network> best;
+    for (int i = 0; i < sqrt(constants::runningSceneBot::birdAmount); i++) {
+        best.emplace_back((--it)->network);
+    }
+
+
+    std::vector<float> weights;
+    for (auto &x: best.front()) {
+        weights.emplace_back(x);
+    }
+    helperFunktions::print(weights);
+    helperFunktions::print("\n\n");
+
     death = 0;
-    addBirdWithNetworkVector();
+    int index = 0;
+    //TODO den scheiß const iterator for network schreiben
+    for (auto &network1: best) {
+        for (auto &network2: best) {
+            birdsWithNetwork.at(index++).network = Network(network1, network2);
+        }
+    }
+    for (auto &bird: birdsWithNetwork) {
+        bird.bird.reset();
+    }
 }
 
 void RunningSceneBot::deepUpdate() {
@@ -73,4 +96,8 @@ std::vector<Sensor> RunningSceneBot::addSensors() {
     sensors.emplace_back(Sensor({2, -1}));
     sensors.emplace_back(Sensor({4, -1}));
     return sensors;
+}
+
+bool RunningSceneBot::BirdWithNetwork::operator<(const RunningSceneBot::BirdWithNetwork &rhs) const {
+    return bird.getScore() < rhs.bird.getScore();
 }

@@ -113,7 +113,7 @@ sf::Vector2f Bird::getSchnabelPostion() const {
 }
 
 void Bird::setDeath() {
-    death = true;
+    this->death = true;
 }
 
 bool Bird::getDeath() const {
@@ -127,5 +127,21 @@ int Bird::getScore() const {
 
 void Bird::incrementScore(int score) {
     this->score += score;
+}
+
+Bird &Bird::operator=(const Bird &other) {
+    birdSprite = other.birdSprite;
+    birdTextureIsUp = other.birdTextureIsUp;
+    position = other.position;
+    velocity = other.velocity;
+    score = other.score;
+    death = other.death;
+    return *this;
+}
+
+void Bird::reset() {
+    death = false;
+    score = 0;
+    position = constants::bird::startPos;
 }
 

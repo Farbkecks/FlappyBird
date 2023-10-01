@@ -34,7 +34,7 @@ void RunningScene::update() {
 }
 
 void RunningScene::draw() {
-    window->clear(sf::Color::White);
+    window->clear(sf::Color::Black);
 
     for (auto const &pipe: pipes) {
         window->draw(*pipe);
