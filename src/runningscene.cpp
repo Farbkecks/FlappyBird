@@ -66,8 +66,13 @@ RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared
 }
 
 void RunningScene::addStartetPipes() {
+    int const MID = constants::pipe::startAmountPipes / 2;
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
-        pipes.push_back(std::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
+        if (i == MID - 1) {
+            pipes.push_back(std::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
+        } else {
+            pipes.push_back(std::make_shared<Pipe>((float) i * constants::pipe::pipesDistance));
+        }
     }
 }
 
