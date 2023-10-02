@@ -10,11 +10,11 @@ RunningScenePlayer::RunningScenePlayer(std::shared_ptr<sf::RenderWindow> window,
     scoreText.setPosition(constants::text::scorePos);
     scoreText.setString(constants::text::textScorePrefix + "0");
 
-    sensors.emplace_back(Sensor({4, 1}));
-    sensors.emplace_back(Sensor({2, 1}));
+    sensors.emplace_back(Sensor({0, 1}));
+    sensors.emplace_back(Sensor({1, 2}));
     sensors.emplace_back(Sensor({1, 0}));
-    sensors.emplace_back(Sensor({2, -1}));
-    sensors.emplace_back(Sensor({4, -1}));
+    sensors.emplace_back(Sensor({1, -2}));
+    sensors.emplace_back(Sensor({0, -1}));
 }
 
 void RunningScenePlayer::input(sf::Event event) {

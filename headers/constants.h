@@ -63,6 +63,6 @@ namespace constants {
 
     namespace runningSceneBot {
         //muss 9,16,25,36 sein
-        const int birdAmount = 100;
+        const int birdAmount = 9;
     }
 }

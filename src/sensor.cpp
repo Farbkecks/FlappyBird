@@ -47,6 +47,10 @@ void Sensor::updateHitPoint(sf::Vector2f point, std::deque<std::shared_ptr<Pipe>
             return;
         }
         helperFunktions::addVector2f(point, steps);
+        if (point.y >= constants::engine::resolution.y || point.y < 0) {
+            this->hitPoint = {std::numeric_limits<float>::infinity(), std::numeric_limits<float>::infinity()};
+            break;
+        }
         if (point.x > (*it)->getX() + constants::pipe::pipeWidth) {
             it++;
         }

@@ -78,6 +78,9 @@ void RunningSceneBot::deepDraw() {
     for (auto const &bird: birdsWithNetwork) {
         if (not bird.bird.getDeath()) {
             window->draw(bird.bird);
+//            for (auto const sen: bird.sensors) {
+//                window->draw(sen);
+//            }
         }
     }
 }
@@ -90,11 +93,11 @@ void RunningSceneBot::input(sf::Event event) {
 
 std::vector<Sensor> RunningSceneBot::addSensors() {
     std::vector<Sensor> sensors;
-    sensors.emplace_back(Sensor({4, 1}));
-    sensors.emplace_back(Sensor({2, 1}));
+    sensors.emplace_back(Sensor({0, 1}));
+    sensors.emplace_back(Sensor({1, 2}));
     sensors.emplace_back(Sensor({1, 0}));
-    sensors.emplace_back(Sensor({2, -1}));
-    sensors.emplace_back(Sensor({4, -1}));
+    sensors.emplace_back(Sensor({1, -2}));
+    sensors.emplace_back(Sensor({0, -1}));
     return sensors;
 }
 
