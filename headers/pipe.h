@@ -23,9 +23,13 @@ public:
 
     float getX() const;
 
+    sf::Vector2f getPos() const;
+
     virtual bool collisionOnY(const std::pair<float, float> &minMax) const;
 
     bool collisionOnY(const Bird &bird) const;
+
+    float heightDiffernceGapeToBird(const Bird &bird) const;
 
     //works also for GhostPipe
     bool collision(const sf::Vector2f &pos) const;

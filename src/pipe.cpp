@@ -83,3 +83,11 @@ void Pipe::setAktive() {
 bool Pipe::getAktive() const {
     return wasAktive;
 }
+
+sf::Vector2f Pipe::getPos() const {
+    return postion;
+}
+
+float Pipe::heightDiffernceGapeToBird(const Bird &bird) const {
+    return std::abs(postion.y - bird.getSchnabelPostion().y);
+}

@@ -9,7 +9,7 @@ RunningSceneBot::RunningSceneBot(std::shared_ptr<sf::RenderWindow> window,
 void RunningSceneBot::addBirdWithNetworkVector() {
     for (int i = 0; i < constants::runningSceneBot::birdAmount; i++) {
         birdsWithNetwork.emplace_back(BirdWithNetwork({
-                                                              .bird = Bird(window->getSize()),
+                                                              .bird = Bird(),
                                                               .sensors = addSensors()
                                                       }));
     }
@@ -62,7 +62,6 @@ void RunningSceneBot::deepUpdate() {
 
 
         bird.bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
-        bird.bird.changeYWithCurrentVelocity();
 
         if (not aktivePipe.expired() && aktivePipe.lock()->collisionOnY(bird.bird)) {
             bird.bird.setDeath();

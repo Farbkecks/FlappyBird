@@ -15,10 +15,6 @@ void RunningScene::update() {
         findNextPipe(pipe);
     }
 
-    if (not nextPipe.expired()) {
-        helperFunktions::print(nextPipe.lock()->getX());
-    }
-
     //delete and generate Pipes
     if (pipes.back()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
         pipes.pop_back();

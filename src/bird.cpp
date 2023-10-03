@@ -1,7 +1,7 @@
 #include "bird.h"
 
-Bird::Bird(const sf::Vector2u &windowSize)
-        : windowSize(windowSize), velocity(0), death(false), score(0) {
+Bird::Bird()
+        : velocity(0), death(false), score(0) {
     birdUp.loadFromFile(constants::bird::path, constants::bird::birdUpArea);
     birdDown.loadFromFile(constants::bird::path, constants::bird::birdDownArea);
 
@@ -54,8 +54,8 @@ void Bird::checkPostionBounds() {
         position.y = 0;
     }
 
-    if (position.y > (float) windowSize.y - birdSprite.getGlobalBounds().height) {
-        position.y = (float) windowSize.y - birdSprite.getGlobalBounds().height;
+    if (position.y > (float) constants::engine::resolution.y - birdSprite.getGlobalBounds().height) {
+        position.y = (float) constants::engine::resolution.y - birdSprite.getGlobalBounds().height;
     }
 }
 
@@ -80,10 +80,12 @@ float Bird::checkVelocityBounds(float num) {
 
 void Bird::setVelocity(float num) {
     velocity = checkVelocityBounds(num);
+    changeYWithCurrentVelocity();
 }
 
 void Bird::changeVelocity(float num) {
     velocity = checkVelocityBounds(velocity += num);
+    changeYWithCurrentVelocity();
 }
 
 void Bird::changeYWithCurrentVelocity() {

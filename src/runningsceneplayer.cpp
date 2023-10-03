@@ -2,7 +2,7 @@
 
 RunningScenePlayer::RunningScenePlayer(std::shared_ptr<sf::RenderWindow> window,
                                        std::shared_ptr<constants::gameState> status) :
-        RunningScene(window, status), bird(window->getSize()), score(0), drawDebug(false) {
+        RunningScene(window, status), bird(), score(0), drawDebug(false) {
     font.loadFromFile(constants::text::path);
     scoreText.setFont(font);
     scoreText.setCharacterSize(constants::text::textSize);
@@ -50,9 +50,12 @@ void RunningScenePlayer::deepUpdate() {
         *status = constants::gameState::GAMEOVER;
     }
 
+    if (not nextPipe.expired()) {
+        helperFunktions::print(nextPipe.lock()->heightDiffernceGapeToBird(bird));
+    }
+
     //change Bird y
     bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
-    bird.changeYWithCurrentVelocity();
 
     for (auto &sensor: sensors) {
         sensor.updateHitPoint(bird.getSchnabelPostion(), pipes);

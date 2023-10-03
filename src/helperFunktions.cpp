@@ -30,3 +30,10 @@ void helperFunktions::print(const std::vector<float> &vec) {
     }
     std::cout << std::endl;
 }
+
+void helperFunktions::drawHorizontalLine(const sf::Vector2f &pos, std::shared_ptr<sf::RenderWindow> window) {
+    auto line = sf::RectangleShape({100, 1});
+    line.setPosition(pos);
+    line.setFillColor(sf::Color::Red);
+    window->draw(line);
+}

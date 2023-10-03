@@ -3,6 +3,7 @@
 #include <iostream>
 #include <random>
 #include <SFML/Graphics.hpp>
+#include <memory>
 
 namespace detail {
     template<typename T, typename... Tail>
@@ -32,4 +33,6 @@ namespace helperFunktions {
 
     //return number between 0 and 1
     float sigmoid(float num);
+
+    void drawHorizontalLine(const sf::Vector2f &pos, std::shared_ptr<sf::RenderWindow> window);
 }
