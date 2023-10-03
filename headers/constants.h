@@ -71,8 +71,15 @@ namespace constants {
     namespace runningSceneBot {
         //muss 9,16,25,36 sein
         const int birdAmount = 100;
-        const std::vector<float> workingWeights = {-0.716422, 0.0838038, 0.130802, 0.931516, 0.247566, 0.537706,
-                                                   0.748772, -0.324747, 0.669607,
-                                                   -0.399823, 0.378521, -0.699698, 0.506821, 0.293008, -0.892453};
+        const std::vector<float> workingWeights = {0.126164, 0.386364, -0.304178, 0.199713, 0.528459, -0.653615,
+                                                   -0.297403, -0.707144, 0.20423, 0.693899, 0.760704, 0.30372, 0.154057,
+                                                   -0.695853, -0.12534, -0.550707, 0.104831, 0.304605, -0.616688,
+                                                   -0.708975};
+    }
+
+    namespace network {
+        const int inputLayerCount = 3;
+        const int hiddenLayerCount = 5;
+        const int outputLayerCount = 1;
     }
 }

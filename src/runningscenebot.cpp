@@ -50,7 +50,8 @@ void RunningSceneBot::deepUpdate() {
         bird.bird.incrementScore(1);
 
         float differnceGape = nextPipe.expired() ? 0 : nextPipe.lock()->heightDiffernceGapeToBird(bird.bird);
-        if (bird.network.calculate(differnceGape, bird.bird.getVelocity())) {
+        float differnceX = nextPipe.expired() ? 0 : nextPipe.lock()->differnceBirdToPipeX(bird.bird);
+        if (bird.network.calculate(differnceGape, bird.bird.getVelocity(), differnceX)) {
             bird.bird.setVelocity(constants::bird::jumpVelocity);
         }
 

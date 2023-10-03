@@ -44,14 +44,14 @@ Network::v3Float Network::getWeights() const {
     return weights;
 }
 
-bool Network::calculate(float difernceToGape, float velocity) const {
-    v1Float inputs = {difernceToGape, velocity};
-    std::vector<float> hiddenlayer(5);
+bool Network::calculate(float difdernceToGape, float velocity, float xDidfernce) const {
+    v1Float inputs = {difdernceToGape, velocity, xDidfernce};
+    std::vector<float> hiddenlayer(constants::network::hiddenLayerCount);
     for (int i = 0; i < hiddenlayer.size(); i++) {
         hiddenlayer.at(i) = calculateNote(weights.at(0).at(i), inputs);
     }
 
-    v1Float outLayer(1);
+    v1Float outLayer(constants::network::outputLayerCount);
     for (int i = 0; i < outLayer.size(); i++) {
         outLayer.at(i) = calculateNote(weights.at(1).at(i), hiddenlayer);
     }
@@ -72,9 +72,10 @@ float Network::calculateNote(const Network::v1Float &weight, const Network::v1Fl
 }
 
 Network::v3Float Network::emptyWeights() {
+    using namespace constants::network;
     return {
-            {5, std::vector<float>(2)},
-            {1, std::vector<float>(5)}
+            {hiddenLayerCount, std::vector<float>(inputLayerCount)},
+            {outputLayerCount, std::vector<float>(hiddenLayerCount)}
     };;
 }
 

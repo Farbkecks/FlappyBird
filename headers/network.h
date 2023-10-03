@@ -1,6 +1,7 @@
 #pragma once
 
 #include "helperFuntions.h"
+#include "constants.h"
 #include <vector>
 #include <cstdlib>
 
@@ -52,7 +53,7 @@ public:
 
     Network(Network &lhs, Network &rhs);
 
-    bool calculate(float difernceToGape, float velocity) const;
+    bool calculate(float difdernceToGape, float velocity, float xDidfernce) const;
 
     v3Float getWeights() const;
 
