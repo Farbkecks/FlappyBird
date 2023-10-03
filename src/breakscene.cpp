@@ -3,7 +3,7 @@
 
 void BreakScene::input(sf::Event event) {
     if (event.key.code == constants::input::resumeBreak) {
-        *status = constants::gameState::RUNNIINGPLAYER;
+        *status = aktiveScene;
         drawn = false;
     }
 }

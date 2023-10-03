@@ -16,6 +16,14 @@ void Scene::run(const sf::Time &timeSinceLast) {
             if (event.key.code == constants::input::closeButton) {
                 window->close();
             }
+            if (event.key.code == constants::input::botScene) {
+                aktiveScene = constants::gameState::RUNNINGBOT;
+                *status = aktiveScene;
+            }
+            if (event.key.code == constants::input::playerScene) {
+                aktiveScene = constants::gameState::RUNNIINGPLAYER;
+                *status = aktiveScene;
+            }
             input(event);
         }
     }

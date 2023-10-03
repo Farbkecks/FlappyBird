@@ -5,7 +5,7 @@ Engine::Engine()
         sf::VideoMode(constants::engine::resolution.x, constants::engine::resolution.y),
         constants::engine::titel,
         sf::Style::Close)),
-          status(std::make_shared<constants::gameState>(constants::engine::aktiveScene)),
+          status(std::make_shared<constants::gameState>(constants::engine::aktiveSceneStart)),
           runningScenePlayer(window, status),
           runningSceneBot(window, status),
           breakScene(window, status),

@@ -14,7 +14,6 @@ void RunningSceneBot::addBirdWithNetworkVector() {
 
 void RunningSceneBot::deepReset() {
     std::sort(birdsWithNetwork.begin(), birdsWithNetwork.end());
-    helperFunktions::print(birdsWithNetwork.back().bird.getScore());
     auto it = birdsWithNetwork.end();
     std::vector<Network> best;
     for (int i = 0; i < sqrt(constants::runningSceneBot::birdAmount); i++) {

@@ -12,7 +12,7 @@ namespace constants {
         //TODO put usefully numbers
         const auto updateCycle = 0.01;
         const sf::Color background = sf::Color::Black;
-        const auto aktiveScene = constants::gameState::RUNNIINGPLAYER;
+        const auto aktiveSceneStart = constants::gameState::RUNNIINGPLAYER;
     }
     namespace bird {
         const sf::String path = "assets/FlappyBird.png";
@@ -54,6 +54,8 @@ namespace constants {
         const auto aiPlay = sf::Keyboard::A;
         const auto slower = sf::Keyboard::S;
         const auto faster = sf::Keyboard::W;
+        const auto botScene = sf::Keyboard::O;
+        const auto playerScene = sf::Keyboard::P;
     }
 
     namespace text {
@@ -62,7 +64,7 @@ namespace constants {
         const auto textColor = sf::Color::Red;
         const sf::Vector2f scorePos = {20, 10};
         const sf::Vector2f isPos = {300, 10};
-        const sf::String textBreak = "Jump: Space\nDirektion: Enter\nClose: Backspace\nai play: A\ndraw debug: D\n\npress space to continue";
+        const sf::String textBreak = "Jump: Space\nDirektion: Enter\nClose: Backspace\nai play: A\ndraw debug: D\nBot Scene: O\nPlayer Scene: P\n\npress space to continue";
         const sf::String textGameover = "press enter to restart";
         const sf::String textScorePrefix = "Score: ";
         const sf::String textAiPlay = "ai plays";

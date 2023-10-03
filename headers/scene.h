@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
-
+#include "helperFuntions.h"
 #include "constants.h"
 
 class Scene {
@@ -26,4 +26,5 @@ protected:
     std::shared_ptr<sf::RenderWindow> window;
     std::shared_ptr<constants::gameState> status;
     sf::Time timeSinceLast;
+    constants::gameState aktiveScene = constants::engine::aktiveSceneStart;
 };
