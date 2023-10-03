@@ -77,6 +77,4 @@ private:
     float velocity;
     int score;
     bool death;
-    int id;
-    static int idCount;
 };

@@ -1,9 +1,7 @@
 #include "bird.h"
 
-int Bird::idCount = 0;
-
 Bird::Bird()
-        : velocity(0), death(false), score(0), id(idCount++) {
+        : velocity(0), death(false), score(0) {
     birdUp.loadFromFile(constants::bird::path, constants::bird::birdUpArea);
     birdDown.loadFromFile(constants::bird::path, constants::bird::birdDownArea);
 
