@@ -6,7 +6,8 @@ void RunningScene::update() {
     if (timeSinceLastUpdateCycle.asSeconds() < constants::engine::updateCycle) {
         return;
     }
-    //movePipe and find relevant pipe
+
+    aktivePipe.reset();
     for (auto const &pipe: pipes) {
         pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion) * pipeDistanceMultiplayer);
         findeAktivePipe(pipe);
@@ -89,26 +90,10 @@ int RunningScene::dirketionToInt(RunningScene::Direktion direktion) {
 }
 
 void RunningScene::findeAktivePipe(const std::shared_ptr<Pipe> &pipe) {
-    if (pipe->getX() + constants::pipe::pipeWidth == constants::bird::startPos.x) {
-        switch (direktion) {
-            case FORWARD:
-                aktivePipe.reset();
-                break;
-            case BACKWARD:
-                aktivePipe = pipe;
-                break;
-        }
-    } else if (pipe->getX() == constants::bird::startPos.x + constants::bird::birdWidth) {
-        switch (direktion) {
-            case FORWARD:
-                aktivePipe = pipe;
-                break;
-            case BACKWARD:
-                aktivePipe.reset();
-                break;
-        }
+    if (pipe->getX() < constants::bird::startPos.x &&
+        pipe->getX() + constants::pipe::pipeWidth > constants::bird::startPos.x) {
+        aktivePipe = pipe;
     }
-
 }
 
 void RunningScene::findNextPipe(const std::shared_ptr<Pipe> &pipe) {
