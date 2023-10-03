@@ -21,7 +21,7 @@ Network::Network(Network &lhs, Network &rhs) {
     for (auto &i: *this) {
         auto percentage = helperFunktions::randomFloat(0, 1);
         if (percentage < 0.1) {
-            i = helperFunktions::randomFloat(-1, 1);
+            i = helperFunktions::randomFloat(0, 1);
         } else if (percentage >= 0.1 && percentage < 0.55) {
             i = *lhsit;
         } else if (percentage >= 0.55) {
