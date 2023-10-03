@@ -1,7 +1,11 @@
 #include "network.h"
 
-Network::Network(const v3Float &weights)
-        : weights(weights) {
+Network::Network(const v1Float &weights) {
+    this->weights = emptyWeights();
+    int index = 0;
+    for (auto &weight: *this) {
+        weight = weights.at(index++);
+    }
 }
 
 Network::Network() {

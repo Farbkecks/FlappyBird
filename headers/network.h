@@ -48,7 +48,7 @@ public:
 public:
     Network();
 
-    explicit Network(const v3Float &weights);
+    explicit Network(const v1Float &weights);
 
     Network(Network &lhs, Network &rhs);
 
