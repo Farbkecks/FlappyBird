@@ -36,7 +36,7 @@ public:
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
-    Bird &operator=(const Bird &other);
+    Bird &operator=(const Bird &other) = default;
 
 
     void setDeath();
@@ -77,4 +77,6 @@ private:
     float velocity;
     int score;
     bool death;
+    int id;
+    static int idCount;
 };

@@ -1,7 +1,9 @@
 #include "bird.h"
 
+int Bird::idCount = 0;
+
 Bird::Bird()
-        : velocity(0), death(false), score(0) {
+        : velocity(0), death(false), score(0), id(idCount++) {
     birdUp.loadFromFile(constants::bird::path, constants::bird::birdUpArea);
     birdDown.loadFromFile(constants::bird::path, constants::bird::birdDownArea);
 
@@ -131,15 +133,15 @@ void Bird::incrementScore(int score) {
     this->score += score;
 }
 
-Bird &Bird::operator=(const Bird &other) {
-    birdSprite = other.birdSprite;
-    birdTextureIsUp = other.birdTextureIsUp;
-    position = other.position;
-    velocity = other.velocity;
-    score = other.score;
-    death = other.death;
-    return *this;
-}
+//Bird &Bird::operator=(const Bird &other) {
+//    birdSprite = other.birdSprite;
+//    birdTextureIsUp = other.birdTextureIsUp;
+//    position = other.position;
+//    velocity = other.velocity;
+//    score = other.score;
+//    death = other.death;
+//    return *this;
+//}
 
 void Bird::reset() {
     death = false;

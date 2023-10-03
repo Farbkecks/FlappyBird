@@ -20,7 +20,7 @@ void RunningSceneBot::deepReset() {
         best.emplace_back((--it)->network);
     }
 
-
+    //Debug
     std::vector<float> weights;
     for (auto &x: best.front()) {
         weights.emplace_back(x);
