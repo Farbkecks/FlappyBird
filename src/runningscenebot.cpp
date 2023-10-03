@@ -8,10 +8,7 @@ RunningSceneBot::RunningSceneBot(std::shared_ptr<sf::RenderWindow> window,
 
 void RunningSceneBot::addBirdWithNetworkVector() {
     for (int i = 0; i < constants::runningSceneBot::birdAmount; i++) {
-        birdsWithNetwork.emplace_back(BirdWithNetwork({
-                                                              .bird = Bird(),
-                                                              .sensors = addSensors()
-                                                      }));
+        birdsWithNetwork.emplace_back();
     }
 }
 
@@ -50,13 +47,9 @@ void RunningSceneBot::deepUpdate() {
             continue;
         }
         bird.bird.incrementScore(1);
-        std::vector<float> sensorData;
-        for (auto &sen: bird.sensors) {
-            sen.updateHitPoint(bird.bird.getSchnabelPostion(), pipes);
-            sensorData.emplace_back(sen.getDistance());
-        }
 
-        if (bird.network.calculate(sensorData)) {
+        float differnceGape = nextPipe.expired() ? 0 : nextPipe.lock()->heightDiffernceGapeToBird(bird.bird);
+        if (bird.network.calculate(differnceGape, bird.bird.getVelocity())) {
             bird.bird.setVelocity(constants::bird::jumpVelocity);
         }
 

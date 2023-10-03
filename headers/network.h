@@ -53,7 +53,7 @@ public:
     Network(Network &lhs, Network &rhs);
 
     //5 input float
-    bool calculate(const std::vector<float> &inputs) const;
+    bool calculate(float difernceToGape, float velocity) const;
 
     v3Float getWeights() const;
 
@@ -61,6 +61,9 @@ public:
 private:
 
     static float calculateNote(const Network::v1Float &weight, const Network::v1Float &input);
+
+    static v3Float emptyWeights();
+
     //variables
 private:
     v3Float weights;

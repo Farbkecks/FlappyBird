@@ -10,7 +10,6 @@ class RunningSceneBot : public RunningScene {
     struct BirdWithNetwork {
         Bird bird;
         Network network;
-        std::vector<Sensor> sensors;
 
         bool operator<(RunningSceneBot::BirdWithNetwork const &rhs) const;
 

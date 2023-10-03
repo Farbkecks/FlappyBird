@@ -147,3 +147,7 @@ void Bird::reset() {
     position = constants::bird::startPos;
 }
 
+float Bird::getVelocity() const {
+    return velocity;
+}
+

@@ -5,10 +5,7 @@ Network::Network(const v3Float &weights)
 }
 
 Network::Network() {
-    weights = {
-            {5, std::vector<float>(5)},
-            {2, std::vector<float>(5)}
-    };
+    weights = emptyWeights();
     for (auto &i: *this) {
         i = helperFunktions::randomFloat(-1, 1);
     }
@@ -17,10 +14,8 @@ Network::Network() {
 //TODO const iteraotr implementieren
 //eigentlic müssten lhs und rhs const sein aber keine Lust einen const iteraotr zu schreiben
 Network::Network(Network &lhs, Network &rhs) {
-    weights = {
-            {5, std::vector<float>(5)},
-            {2, std::vector<float>(5)}
-    };
+    weights = emptyWeights();
+
     auto lhsit = std::begin(lhs);
     auto rhsit = std::begin(rhs);
     for (auto &i: *this) {
@@ -46,24 +41,19 @@ Network::v3Float Network::getWeights() const {
     return weights;
 }
 
-bool Network::calculate(const std::vector<float> &inputs) const {
-    if (inputs.size() != 5) {
-        helperFunktions::print("Network calculate wrong input size");
-        std::exit(1);
-    }
-
-
+bool Network::calculate(float difernceToGape, float velocity) const {
+    v1Float inputs = {difernceToGape, velocity};
     std::vector<float> hiddenlayer(5);
     for (int i = 0; i < hiddenlayer.size(); i++) {
         hiddenlayer.at(i) = calculateNote(weights.at(0).at(i), inputs);
     }
 
-    v1Float outLayer(2);
+    v1Float outLayer(1);
     for (int i = 0; i < outLayer.size(); i++) {
         outLayer.at(i) = calculateNote(weights.at(1).at(i), hiddenlayer);
     }
 
-    return outLayer.at(0) > outLayer.at(1);
+    return outLayer.at(0) > 0.5;
 }
 
 float Network::calculateNote(const Network::v1Float &weight, const Network::v1Float &input) {
@@ -76,6 +66,13 @@ float Network::calculateNote(const Network::v1Float &weight, const Network::v1Fl
         note += weight.at(i) * input.at(i);
     }
     return helperFunktions::sigmoid(note);
+}
+
+Network::v3Float Network::emptyWeights() {
+    return {
+            {5, std::vector<float>(2)},
+            {1, std::vector<float>(5)}
+    };;
 }
 
 Network::Iterator Network::Iterator::operator++(int) {
