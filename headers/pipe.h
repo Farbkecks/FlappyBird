@@ -31,6 +31,8 @@ public:
 
     float heightDiffernceGapeToBird(const Bird &bird) const;
 
+    float differnceBirdToPipeX(const Bird &bird) const;
+
     //works also for GhostPipe
     bool collision(const sf::Vector2f &pos) const;
 

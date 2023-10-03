@@ -12,6 +12,7 @@ namespace constants {
         //TODO put usefully numbers
         const auto updateCycle = 0.01;
         const sf::Color background = sf::Color::Black;
+        const auto aktiveScene = constants::gameState::RUNNIINGPLAYER;
     }
     namespace bird {
         const sf::String path = "assets/FlappyBird.png";
@@ -69,7 +70,7 @@ namespace constants {
 
     namespace runningSceneBot {
         //muss 9,16,25,36 sein
-        const int birdAmount = 16;
+        const int birdAmount = 100;
         const std::vector<float> workingWeights = {-0.716422, 0.0838038, 0.130802, 0.931516, 0.247566, 0.537706,
                                                    0.748772, -0.324747, 0.669607,
                                                    -0.399823, 0.378521, -0.699698, 0.506821, 0.293008, -0.892453};

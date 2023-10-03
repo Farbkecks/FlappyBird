@@ -91,3 +91,8 @@ sf::Vector2f Pipe::getPos() const {
 float Pipe::heightDiffernceGapeToBird(const Bird &bird) const {
     return postion.y - bird.getSchnabelPostion().y;
 }
+
+float Pipe::differnceBirdToPipeX(const Bird &bird) const {
+    auto diff = getX() - bird.getSchnabelPostion().x;
+    return diff > 0 ? diff : 0;
+}

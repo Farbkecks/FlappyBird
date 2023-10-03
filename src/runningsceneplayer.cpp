@@ -74,6 +74,10 @@ void RunningScenePlayer::deepUpdate() {
     for (auto &sensor: sensors) {
         sensor.updateHitPoint(bird.getSchnabelPostion(), pipes);
     }
+    if (not nextPipe.expired()) {
+
+        helperFunktions::print(nextPipe.lock()->differnceBirdToPipeX(bird));
+    }
 
 }
 
