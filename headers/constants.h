@@ -9,7 +9,6 @@ namespace constants {
         const unsigned int fps = 144;
         const sf::String titel = "Test";
         const sf::Vector2u resolution = {1280, 720};
-        //TODO put usefully numbers
         const auto updateCycle = 0.01;
         const sf::Color background = sf::Color::Black;
         const auto aktiveSceneStart = constants::gameState::RUNNIINGPLAYER;
@@ -73,10 +72,10 @@ namespace constants {
     namespace runningSceneBot {
         //muss 9,16,25,36 sein
         const int birdAmount = 100;
-        const std::vector<float> workingWeights = {0.126164, 0.386364, -0.304178, 0.199713, 0.528459, -0.653615,
-                                                   -0.297403, -0.707144, 0.20423, 0.693899, 0.760704, 0.30372, 0.154057,
-                                                   -0.695853, -0.12534, -0.550707, 0.104831, 0.304605, -0.616688,
-                                                   -0.708975};
+        const std::vector<float> workingWeights = {0.234596, -0.790765, 0.570452, -0.0184026, 0.524461, -0.61919,
+                                                   0.241462, 0.809137, 0.172826, 0.164006, 0.936216, 0.290445,
+                                                   -0.692984, 0.619983, 0.660634, -0.941832, -0.798212, -0.955443,
+                                                   -0.559374, 0.085696};
     }
 
     namespace network {

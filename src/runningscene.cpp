@@ -90,7 +90,7 @@ int RunningScene::dirketionToInt(RunningScene::Direktion direktion) {
 }
 
 void RunningScene::findeAktivePipe(const std::shared_ptr<Pipe> &pipe) {
-    if (pipe->getX() < constants::bird::startPos.x &&
+    if (pipe->getX() < constants::bird::startPos.x + constants::bird::birdWidth &&
         pipe->getX() + constants::pipe::pipeWidth > constants::bird::startPos.x) {
         aktivePipe = pipe;
     }
