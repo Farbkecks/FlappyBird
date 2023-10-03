@@ -50,6 +50,7 @@ namespace constants {
         const auto restartButton = sf::Keyboard::Enter;
         const auto changeDirection = sf::Keyboard::Enter;
         const auto drawDebug = sf::Keyboard::D;
+        const auto aiPlay = sf::Keyboard::A;
     }
 
     namespace text {
@@ -57,9 +58,11 @@ namespace constants {
         const int textSize = 30;
         const auto textColor = sf::Color::Red;
         const sf::Vector2f scorePos = {20, 10};
-        const sf::String textBreak = "Jump: Space\nDirektion: Enter\nClose: Backspace\n\npress space to continue";
+        const sf::Vector2f isPos = {300, 10};
+        const sf::String textBreak = "Jump: Space\nDirektion: Enter\nClose: Backspace\nai play: A\ndraw debug: D\n\npress space to continue";
         const sf::String textGameover = "press enter to restart";
         const sf::String textScorePrefix = "Score: ";
+        const sf::String textAiPlay = "ai plays";
     }
 
     namespace runningSceneBot {

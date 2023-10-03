@@ -1,6 +1,7 @@
 #pragma once
 
 #include "runningscene.h"
+#include "network.h"
 
 class RunningScenePlayer : public RunningScene {
 //funktions
@@ -23,9 +24,11 @@ private:
 
     Bird bird;
     bool drawDebug;
+    bool aiPlay;
     int score;
     sf::Font font;
     sf::Text scoreText;
+    sf::Text aiPlayText;
 
     std::vector<Sensor> sensors;
 };
