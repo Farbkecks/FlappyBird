@@ -6,11 +6,9 @@ void RunningScene::update() {
     if (timeSinceLastUpdateCycle.asSeconds() < constants::engine::updateCycle) {
         return;
     }
-
-
     //movePipe and find relevant pipe
     for (auto const &pipe: pipes) {
-        pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion));
+        pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion) * pipeDistanceMultiplayer);
         findeAktivePipe(pipe);
         findNextPipe(pipe);
     }
@@ -20,7 +18,6 @@ void RunningScene::update() {
         pipes.pop_back();
         pipes.push_front(std::make_shared<Pipe>(-constants::pipe::pipesDistance));
     }
-
     if (pipes.front()->getX() < (float) -constants::pipe::pipesDistance) {
         pipes.pop_front();
         pipes.push_back(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
@@ -28,7 +25,6 @@ void RunningScene::update() {
 
 
     deepUpdate();
-
     timeSinceLastUpdateCycle = sf::Time::Zero;
 
 }
@@ -123,4 +119,14 @@ void RunningScene::findNextPipe(const std::shared_ptr<Pipe> &pipe) {
         return;
     }
     nextPipe = pipe;
+}
+
+void RunningScene::input(sf::Event event) {
+    if (event.key.code == constants::input::slower) {
+        pipeDistanceMultiplayer *= 0.5;
+    }
+    if (event.key.code == constants::input::faster) {
+        pipeDistanceMultiplayer *= 2;
+    }
+    deepInput(event);
 }

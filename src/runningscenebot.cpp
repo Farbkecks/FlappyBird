@@ -75,7 +75,7 @@ void RunningSceneBot::deepDraw() {
     }
 }
 
-void RunningSceneBot::input(sf::Event event) {
+void RunningSceneBot::deepInput(sf::Event event) {
     if (event.key.code == constants::input::pauseButton) {
         *status = constants::gameState::PAUSED;
     }

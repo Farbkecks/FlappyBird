@@ -10,7 +10,7 @@ public:
 
 //funktions
 protected:
-    void input(sf::Event event) override;
+    void deepInput(sf::Event event) override;
 
 private:
     void deepUpdate() override;

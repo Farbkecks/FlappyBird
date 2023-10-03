@@ -32,6 +32,10 @@ protected:
 
     virtual void deepDraw() = 0;
 
+    void input(sf::Event event) override;
+
+    virtual void deepInput(sf::Event event) = 0;
+
     void addStartetPipes();
 
     static int dirketionToInt(Direktion direktion);
@@ -49,6 +53,6 @@ protected:
     std::weak_ptr<Pipe> aktivePipe;
     std::weak_ptr<Pipe> nextPipe;
     Direktion direktion;
-
+    float pipeDistanceMultiplayer = 1;
 
 };

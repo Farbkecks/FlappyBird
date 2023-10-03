@@ -24,7 +24,7 @@ RunningScenePlayer::RunningScenePlayer(std::shared_ptr<sf::RenderWindow> window,
     sensors.emplace_back(Sensor({0, -1}));
 }
 
-void RunningScenePlayer::input(sf::Event event) {
+void RunningScenePlayer::deepInput(sf::Event event) {
     if (event.key.code == constants::input::pauseButton) {
         *status = constants::gameState::PAUSED;
     }
@@ -86,8 +86,8 @@ void RunningScenePlayer::deepDraw() {
     }
 
     if (drawDebug) {
-        drawPipeDebug(aktivePipe, sf::Color::Black);
         drawPipeDebug(nextPipe, sf::Color::Blue);
+        drawPipeDebug(aktivePipe, sf::Color::Red);
         for (auto const &sensor: sensors) {
             window->draw(sensor);
         }

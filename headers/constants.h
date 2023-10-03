@@ -51,6 +51,8 @@ namespace constants {
         const auto changeDirection = sf::Keyboard::Enter;
         const auto drawDebug = sf::Keyboard::D;
         const auto aiPlay = sf::Keyboard::A;
+        const auto slower = sf::Keyboard::S;
+        const auto faster = sf::Keyboard::W;
     }
 
     namespace text {

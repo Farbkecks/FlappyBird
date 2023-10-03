@@ -28,7 +28,7 @@ protected:
 
     void deepDraw() override;
 
-    void input(sf::Event event) override;
+    void deepInput(sf::Event event) override;
 
     static std::vector<Sensor> addSensors();
 
