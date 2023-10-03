@@ -47,7 +47,6 @@ void RunningScenePlayer::input(sf::Event event) {
 }
 
 void RunningScenePlayer::deepUpdate() {
-
     //update score
     if (not aktivePipe.expired() && not aktivePipe.lock()->getAktive()) {
         score++;
@@ -60,18 +59,18 @@ void RunningScenePlayer::deepUpdate() {
         *status = constants::gameState::GAMEOVER;
     }
 
+    //do Jump with neural Network
     if (not nextPipe.expired() && aiPlay) {
-        if (Network({-0.716422, 0.0838038, 0.130802, 0.931516, 0.247566, 0.537706, 0.748772, -0.324747, 0.669607,
-                     -0.399823, 0.378521, -0.699698, 0.506821, 0.293008, -0.892453}).calculate(
-                nextPipe.lock()->heightDiffernceGapeToBird(bird), bird.getVelocity())) {
+        Network network(constants::runningSceneBot::workingWeights);
+        if (network.calculate(nextPipe.lock()->heightDiffernceGapeToBird(bird), bird.getVelocity())) {
             bird.setVelocity(constants::bird::jumpVelocity);
         }
     }
 
-
     //change Bird y
     bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
 
+    //update Sensorhitpoint
     for (auto &sensor: sensors) {
         sensor.updateHitPoint(bird.getSchnabelPostion(), pipes);
     }
@@ -92,10 +91,22 @@ void RunningScenePlayer::deepDraw() {
         for (auto const &sensor: sensors) {
             window->draw(sensor);
         }
+        drawGapeDiffernce();
     }
 }
 
 void RunningScenePlayer::deepReset() {
     score = 0;
     bird.setPosition(constants::bird::startPos);
+}
+
+void RunningScenePlayer::drawGapeDiffernce() {
+    if (nextPipe.expired()) {
+        return;
+    }
+    auto line = sf::RectangleShape({3, nextPipe.lock()->heightDiffernceGapeToBird(bird)});
+    line.setFillColor(sf::Color::Green);
+    line.setPosition({nextPipe.lock()->getPos().x, bird.getSchnabelPostion().y});
+    line.setPosition(bird.getSchnabelPostion());
+    window->draw(line);
 }

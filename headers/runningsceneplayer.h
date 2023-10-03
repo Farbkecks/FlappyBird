@@ -19,6 +19,8 @@ private:
 
     void deepDraw() override;
 
+    void drawGapeDiffernce();
+
 //variables
 private:
 
