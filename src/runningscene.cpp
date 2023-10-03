@@ -12,8 +12,12 @@ void RunningScene::update() {
     for (auto const &pipe: pipes) {
         pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion));
         findeAktivePipe(pipe);
+        findNextPipe(pipe);
     }
 
+    if (not nextPipe.expired()) {
+        helperFunktions::print(nextPipe.lock()->getX());
+    }
 
     //delete and generate Pipes
     if (pipes.back()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
@@ -34,7 +38,7 @@ void RunningScene::update() {
 }
 
 void RunningScene::draw() {
-    window->clear(sf::Color::Black);
+    window->clear(constants::engine::background);
 
     for (auto const &pipe: pipes) {
         window->draw(*pipe);
@@ -113,4 +117,14 @@ void RunningScene::findeAktivePipe(const std::shared_ptr<Pipe> &pipe) {
         }
     }
 
+}
+
+void RunningScene::findNextPipe(const std::shared_ptr<Pipe> &pipe) {
+    if (pipe->getX() < constants::bird::startPos.x) {
+        return;
+    }
+    if (pipe->getX() > constants::bird::startPos.x + constants::pipe::pipesDistance) {
+        return;
+    }
+    nextPipe = pipe;
 }

@@ -78,9 +78,6 @@ void RunningSceneBot::deepDraw() {
     for (auto const &bird: birdsWithNetwork) {
         if (not bird.bird.getDeath()) {
             window->draw(bird.bird);
-//            for (auto const sen: bird.sensors) {
-//                window->draw(sen);
-//            }
         }
     }
 }

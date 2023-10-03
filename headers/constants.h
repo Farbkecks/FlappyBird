@@ -11,6 +11,7 @@ namespace constants {
         const sf::Vector2u resolution = {1280, 720};
         //TODO put usefully numbers
         const auto updateCycle = sf::seconds(.1f / 7.2).asSeconds();
+        const sf::Color background = sf::Color::White;
     }
     namespace bird {
         const sf::String path = "assets/FlappyBird.png";
@@ -31,7 +32,7 @@ namespace constants {
         const sf::String path = "assets/pipe.png";
         const int pipeWidth = 80;
         const float scale = 0.5;
-        const int startAmountPipes = 6; //dint use in Programm
+        const int startAmountPipes = 6;
         const int pipesDistance = 300;
         const float pipeStepPerUpdate = -1;
         const sf::Vector2f pipeDistanceRange = {200, 400};

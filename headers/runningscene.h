@@ -38,6 +38,8 @@ protected:
 
     void findeAktivePipe(const std::shared_ptr<Pipe> &pipe);
 
+    void findNextPipe(const std::shared_ptr<Pipe> &pipe);
+
     void drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color);
 
 //variables
@@ -45,7 +47,7 @@ protected:
     sf::Time timeSinceLastUpdateCycle;
     std::deque<std::shared_ptr<Pipe>> pipes;
     std::weak_ptr<Pipe> aktivePipe;
-
+    std::weak_ptr<Pipe> nextPipe;
     Direktion direktion;
 
 
