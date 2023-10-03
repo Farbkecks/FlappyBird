@@ -119,7 +119,7 @@ void RunningScene::findNextPipe(const std::shared_ptr<Pipe> &pipe) {
     if (pipe->getX() < constants::bird::startPos.x) {
         return;
     }
-    if (pipe->getX() > constants::bird::startPos.x + constants::pipe::pipesDistance) {
+    if (pipe->getX() + constants::bird::birdWidth > constants::bird::startPos.x + constants::pipe::pipesDistance) {
         return;
     }
     nextPipe = pipe;
