@@ -52,7 +52,6 @@ public:
 
     Network(Network &lhs, Network &rhs);
 
-    //5 input float
     bool calculate(float difernceToGape, float velocity) const;
 
     v3Float getWeights() const;

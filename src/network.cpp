@@ -15,7 +15,6 @@ Network::Network() {
 //eigentlic müssten lhs und rhs const sein aber keine Lust einen const iteraotr zu schreiben
 Network::Network(Network &lhs, Network &rhs) {
     weights = emptyWeights();
-
     auto lhsit = std::begin(lhs);
     auto rhsit = std::begin(rhs);
     for (auto &i: *this) {

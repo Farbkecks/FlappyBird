@@ -10,8 +10,8 @@ namespace constants {
         const sf::String titel = "Test";
         const sf::Vector2u resolution = {1280, 720};
         //TODO put usefully numbers
-        const auto updateCycle = sf::seconds(.1f / 7.2).asSeconds();
-        const sf::Color background = sf::Color::White;
+        const auto updateCycle = 0.01;
+        const sf::Color background = sf::Color::Black;
     }
     namespace bird {
         const sf::String path = "assets/FlappyBird.png";
@@ -64,6 +64,6 @@ namespace constants {
 
     namespace runningSceneBot {
         //muss 9,16,25,36 sein
-        const int birdAmount = 9;
+        const int birdAmount = 16;
     }
 }

@@ -26,7 +26,7 @@ float helperFunktions::randomFloat(const float LO, const float HI) {
 void helperFunktions::print(const std::vector<float> &vec) {
     int i = 0;
     for (const auto &x: vec) {
-        std::cout << i++ << ": " << x << "   ";
+        std::cout << x << ",";
     }
     std::cout << std::endl;
 }
