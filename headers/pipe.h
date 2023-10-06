@@ -29,7 +29,7 @@ public:
 
     bool collisionOnY(const Bird &bird) const;
 
-    float heightDiffernceGapeToBird(const Bird &bird) const;
+    float differnceGapeToBirdY(const Bird &bird) const;
 
     float differnceBirdToPipeX(const Bird &bird) const;
 

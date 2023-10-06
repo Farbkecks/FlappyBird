@@ -9,7 +9,7 @@ void RunningScene::update() {
 
     aktivePipe.reset();
     for (auto const &pipe: pipes) {
-        pipe->changeX(constants::pipe::pipeStepPerUpdate * dirketionToInt(direktion) * pipeDistanceMultiplayer);
+        pipe->changeX(constants::pipe::pipeStepPerUpdate * directionToInt(direktion) * pipeDistanceMultiplayer);
         findeAktivePipe(pipe);
         findNextPipe(pipe);
     }
@@ -59,10 +59,10 @@ void RunningScene::drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color) {
 
 RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
         : Scene(window, status), direktion(FORWARD) {
-    addStartetPipes();
+    addStartPipes();
 }
 
-void RunningScene::addStartetPipes() {
+void RunningScene::addStartPipes() {
     int const MID = constants::pipe::startAmountPipes / 2;
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
         if (i == MID - 1) {
@@ -76,16 +76,20 @@ void RunningScene::addStartetPipes() {
 void RunningScene::reset() {
     direktion = FORWARD;
     pipes.clear();
-    addStartetPipes();
+    addStartPipes();
     deepReset();
 }
 
-int RunningScene::dirketionToInt(RunningScene::Direktion direktion) {
+int RunningScene::directionToInt(RunningScene::Direktion direktion) {
     switch (direktion) {
         case FORWARD:
             return 1;
         case BACKWARD:
             return -1;
+        default: {
+            helperFunktions::print("RunningScene directionToInt triggers default case, but der are only two types");
+            return 0;
+        }
     }
 }
 

@@ -36,9 +36,9 @@ protected:
 
     virtual void deepInput(sf::Event event) = 0;
 
-    void addStartetPipes();
+    void addStartPipes();
 
-    static int dirketionToInt(Direktion direktion);
+    static int directionToInt(RunningScene::Direktion direktion);
 
     void findeAktivePipe(const std::shared_ptr<Pipe> &pipe);
 

@@ -62,7 +62,7 @@ void RunningScenePlayer::deepUpdate() {
     //do Jump with neural Network
     if (not nextPipe.expired() && aiPlay) {
         Network network(constants::runningSceneBot::workingWeights);
-        if (network.calculate(nextPipe.lock()->heightDiffernceGapeToBird(bird), bird.getVelocity(),
+        if (network.calculate(nextPipe.lock()->differnceGapeToBirdY(bird), bird.getVelocity(),
                               nextPipe.lock()->differnceBirdToPipeX(bird))) {
             bird.setVelocity(constants::bird::jumpVelocity);
         }
@@ -104,7 +104,7 @@ void RunningScenePlayer::drawGapeDiffernce() {
     if (nextPipe.expired()) {
         return;
     }
-    auto line = sf::RectangleShape({3, nextPipe.lock()->heightDiffernceGapeToBird(bird)});
+    auto line = sf::RectangleShape({3, nextPipe.lock()->differnceGapeToBirdY(bird)});
     line.setFillColor(sf::Color::Green);
     line.setPosition({nextPipe.lock()->getPos().x, bird.getSchnabelPostion().y});
     line.setPosition(bird.getSchnabelPostion());
