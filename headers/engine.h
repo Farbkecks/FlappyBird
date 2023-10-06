@@ -27,6 +27,7 @@ private:
     //variables
     std::shared_ptr<sf::RenderWindow> window;
     std::shared_ptr<constants::gameState> status;
+    std::shared_ptr<constants::ResourceHolder> resourceHolder;
     RunningScenePlayer runningScenePlayer;
     RunningSceneBot runningSceneBot;
     BreakScene breakScene;

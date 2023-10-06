@@ -12,7 +12,7 @@ class Bird : public sf::Drawable {
 
 public:
     //functions
-    explicit Bird();
+    explicit Bird(std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
 
     void setPosition(const sf::Vector2f &pos);
@@ -69,9 +69,8 @@ private:
 
 private:
     //variables
-    sf::Texture birdUp;
-    sf::Texture birdDown;
     sf::Sprite birdSprite;
+    std::shared_ptr<constants::ResourceHolder> resourceHolder;
     bool birdTextureIsUp;
     sf::Vector2f position;
     float velocity;

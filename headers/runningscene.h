@@ -15,7 +15,9 @@ protected:
     };
 //funktions
 public:
-    RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
+    RunningScene(std::shared_ptr<sf::RenderWindow> window,
+                 std::shared_ptr<constants::gameState> status,
+                 std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
     void reset();
 

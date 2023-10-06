@@ -33,5 +33,7 @@ void Scene::run(const sf::Time &timeSinceLast) {
     draw();
 }
 
-Scene::Scene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : window(window), status(status) {}
+Scene::Scene(std::shared_ptr<sf::RenderWindow> window,
+             std::shared_ptr<constants::gameState> status,
+             std::shared_ptr<constants::ResourceHolder> resourceHolder)
+        : window(window), status(status), resourceHolder(resourceHolder) {}

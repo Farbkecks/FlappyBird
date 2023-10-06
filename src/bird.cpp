@@ -1,11 +1,8 @@
 #include "bird.h"
 
-Bird::Bird()
-        : velocity(0), death(false), score(0) {
-    birdUp.loadFromFile(constants::bird::path, constants::bird::birdUpArea);
-    birdDown.loadFromFile(constants::bird::path, constants::bird::birdDownArea);
-
-    birdSprite.setTexture(birdUp);
+Bird::Bird(std::shared_ptr<constants::ResourceHolder> resourceHolder)
+        : velocity(0), death(false), score(0), resourceHolder(resourceHolder) {
+    birdSprite.setTexture(this->resourceHolder->birdUp);
     birdTextureIsUp = true;
 
     birdSprite.setScale({constants::bird::scale, constants::bird::scale});
@@ -16,14 +13,14 @@ Bird::Bird()
 
 void Bird::changeToBirdUp() {
     if (!birdTextureIsUp) {
-        birdSprite.setTexture(birdUp);
+        birdSprite.setTexture(resourceHolder->birdUp);
         birdTextureIsUp = true;
     }
 }
 
 void Bird::changeToBirdDown() {
     if (birdTextureIsUp) {
-        birdSprite.setTexture(birdDown);
+        birdSprite.setTexture(resourceHolder->birdDown);
         birdTextureIsUp = false;
     }
 }

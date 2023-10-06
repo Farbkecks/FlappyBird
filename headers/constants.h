@@ -1,8 +1,17 @@
 #pragma once
 
+#include <SFMl/Graphics.hpp>
+
 namespace constants {
     enum class gameState {
         RUNNIINGPLAYER, RUNNINGBOT, PAUSED, GAMEOVER
+    };
+
+    struct ResourceHolder {
+        sf::Texture birdUp;
+        sf::Texture birdDown;
+
+        ResourceHolder();
     };
 
     namespace engine {

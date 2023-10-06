@@ -5,7 +5,9 @@
 class GameOverScene : public Scene {
 //funktions
 public:
-    GameOverScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
+    GameOverScene(std::shared_ptr<sf::RenderWindow> window,
+                  std::shared_ptr<constants::gameState> status,
+                  std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
 //funktions
 protected:

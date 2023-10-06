@@ -5,7 +5,9 @@
 class BreakScene : public Scene {
 //funktions
 public:
-    BreakScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
+    BreakScene(std::shared_ptr<sf::RenderWindow> window,
+               std::shared_ptr<constants::gameState> status,
+               std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
 //funktions
 protected:

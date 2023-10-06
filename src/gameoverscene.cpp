@@ -20,9 +20,10 @@ void GameOverScene::draw() {
     }
 }
 
-GameOverScene::GameOverScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(
-        window, status), drawn(false) {
+GameOverScene::GameOverScene(std::shared_ptr<sf::RenderWindow> window,
+                             std::shared_ptr<constants::gameState> status,
+                             std::shared_ptr<constants::ResourceHolder> resourceHolder)
+        : Scene(window, status, resourceHolder), drawn(false) {
     font.loadFromFile(constants::text::path);
     text.setFont(font);
     text.setCharacterSize(constants::text::textSize);

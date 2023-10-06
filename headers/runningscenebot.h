@@ -11,6 +11,8 @@ class RunningSceneBot : public RunningScene {
         Bird bird;
         Network network;
 
+        BirdWithNetwork(std::shared_ptr<constants::ResourceHolder> resourceHolder);
+
         bool operator<(RunningSceneBot::BirdWithNetwork const &rhs) const;
 
         RunningSceneBot::BirdWithNetwork &operator=(const RunningSceneBot::BirdWithNetwork &other) = default;
@@ -18,7 +20,9 @@ class RunningSceneBot : public RunningScene {
 
 public:
     //functions
-    RunningSceneBot(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
+    RunningSceneBot(std::shared_ptr<sf::RenderWindow> window,
+                    std::shared_ptr<constants::gameState> status,
+                    std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
 protected:
     //functions

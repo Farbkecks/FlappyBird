@@ -6,10 +6,11 @@ Engine::Engine()
         constants::engine::titel,
         sf::Style::Close)),
           status(std::make_shared<constants::gameState>(constants::engine::aktiveSceneStart)),
-          runningScenePlayer(window, status),
-          runningSceneBot(window, status),
-          breakScene(window, status),
-          gameOverScene(window, status) {
+          resourceHolder(std::make_shared<constants::ResourceHolder>()),
+          runningScenePlayer(window, status, resourceHolder),
+          runningSceneBot(window, status, resourceHolder),
+          breakScene(window, status, resourceHolder),
+          gameOverScene(window, status, resourceHolder) {
     window->setFramerateLimit(constants::engine::fps);
 
 }

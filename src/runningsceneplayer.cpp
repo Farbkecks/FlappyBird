@@ -1,8 +1,9 @@
 #include "runningsceneplayer.h"
 
 RunningScenePlayer::RunningScenePlayer(std::shared_ptr<sf::RenderWindow> window,
-                                       std::shared_ptr<constants::gameState> status) :
-        RunningScene(window, status), bird(), score(0), drawDebug(false), aiPlay(false) {
+                                       std::shared_ptr<constants::gameState> status,
+                                       std::shared_ptr<constants::ResourceHolder> resourceHolder) :
+        RunningScene(window, status, resourceHolder), bird(resourceHolder), score(0), drawDebug(false), aiPlay(false) {
     font.loadFromFile(constants::text::path);
     scoreText.setFont(font);
     scoreText.setCharacterSize(constants::text::textSize);

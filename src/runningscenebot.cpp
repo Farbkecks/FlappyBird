@@ -1,14 +1,15 @@
 #include "runningscenebot.h"
 
 RunningSceneBot::RunningSceneBot(std::shared_ptr<sf::RenderWindow> window,
-                                 std::shared_ptr<constants::gameState> status) :
-        RunningScene(window, status), death(0) {
+                                 std::shared_ptr<constants::gameState> status,
+                                 std::shared_ptr<constants::ResourceHolder> resourceHolder) :
+        RunningScene(window, status, resourceHolder), death(0) {
     addBirdWithNetworkVector();
 }
 
 void RunningSceneBot::addBirdWithNetworkVector() {
     for (int i = 0; i < constants::runningSceneBot::birdAmount; i++) {
-        birdsWithNetwork.emplace_back();
+        birdsWithNetwork.emplace_back(resourceHolder);
     }
 }
 
@@ -94,3 +95,9 @@ std::vector<Sensor> RunningSceneBot::addSensors() {
 bool RunningSceneBot::BirdWithNetwork::operator<(const RunningSceneBot::BirdWithNetwork &rhs) const {
     return bird.getScore() < rhs.bird.getScore();
 }
+
+RunningSceneBot::BirdWithNetwork::BirdWithNetwork(std::shared_ptr<constants::ResourceHolder> resourceHolder)
+        : bird(resourceHolder) {
+
+}
+

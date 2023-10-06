@@ -57,8 +57,10 @@ void RunningScene::drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color) {
 }
 
 
-RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status)
-        : Scene(window, status), direktion(FORWARD) {
+RunningScene::RunningScene(std::shared_ptr<sf::RenderWindow> window,
+                           std::shared_ptr<constants::gameState> status,
+                           std::shared_ptr<constants::ResourceHolder> resourceHolder)
+        : Scene(window, status, resourceHolder), direktion(FORWARD) {
     addStartPipes();
 }
 

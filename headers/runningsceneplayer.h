@@ -6,7 +6,9 @@
 class RunningScenePlayer : public RunningScene {
 //funktions
 public:
-    RunningScenePlayer(std::shared_ptr<sf::RenderWindow> window, std::shared_ptr<constants::gameState> status);
+    RunningScenePlayer(std::shared_ptr<sf::RenderWindow> window,
+                       std::shared_ptr<constants::gameState> status,
+                       std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
 //funktions
 protected:
