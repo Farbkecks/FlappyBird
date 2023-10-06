@@ -10,6 +10,8 @@ namespace constants {
     struct ResourceHolder {
         sf::Texture birdUp;
         sf::Texture birdDown;
+        sf::Texture pipe;
+        sf::Texture pipeGhost;
 
         ResourceHolder();
     };

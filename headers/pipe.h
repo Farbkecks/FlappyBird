@@ -9,11 +9,11 @@
 class Pipe : public sf::Drawable {
 public:
     //functions
-    Pipe();
+    Pipe(std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
-    Pipe(const sf::Vector2f &pos, float distance);
+    Pipe(const sf::Vector2f &pos, float distance, std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
-    Pipe(const float xPostion);
+    Pipe(float xPostion, std::shared_ptr<constants::ResourceHolder> resourceHolder);
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
@@ -44,11 +44,13 @@ protected:
     //functions
     void updateSprite();
 
-    void updateSpriteTextrue();
+    virtual void updateSpriteTextrue();
+
+    void transformSpriteTextrue();
 
 protected:
     //variables
-    sf::Texture texture;
+    std::shared_ptr<constants::ResourceHolder> resourceHolder;
     sf::Sprite spriteTop;
     sf::Sprite spriteBottom;
     sf::Vector2f postion;

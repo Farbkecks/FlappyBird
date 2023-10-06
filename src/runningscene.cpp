@@ -17,11 +17,12 @@ void RunningScene::update() {
     //delete and generate Pipes
     if (pipes.back()->getX() > (float) constants::pipe::pipesDistance * constants::pipe::startAmountPipes) {
         pipes.pop_back();
-        pipes.push_front(std::make_shared<Pipe>(-constants::pipe::pipesDistance));
+        pipes.push_front(std::make_shared<Pipe>(-constants::pipe::pipesDistance, resourceHolder));
     }
     if (pipes.front()->getX() < (float) -constants::pipe::pipesDistance) {
         pipes.pop_front();
-        pipes.push_back(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes));
+        pipes.push_back(std::make_shared<Pipe>(constants::pipe::pipesDistance * constants::pipe::startAmountPipes,
+                                               resourceHolder));
     }
 
 
@@ -68,9 +69,9 @@ void RunningScene::addStartPipes() {
     int const MID = constants::pipe::startAmountPipes / 2;
     for (int i = -1; i < constants::pipe::startAmountPipes; i++) {
         if (i == MID - 1) {
-            pipes.push_back(std::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance));
+            pipes.push_back(std::make_shared<GhostPipe>((float) i * constants::pipe::pipesDistance, resourceHolder));
         } else {
-            pipes.push_back(std::make_shared<Pipe>((float) i * constants::pipe::pipesDistance));
+            pipes.push_back(std::make_shared<Pipe>((float) i * constants::pipe::pipesDistance, resourceHolder));
         }
     }
 }

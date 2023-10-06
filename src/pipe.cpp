@@ -1,18 +1,34 @@
 #include "pipe.h"
+
+#include <utility>
 #include "helperFuntions.h"
 
-Pipe::Pipe() : wasAktive(false) {
-
-    texture.loadFromFile(constants::pipe::path);
+Pipe::Pipe(std::shared_ptr<constants::ResourceHolder> resourceHolder)
+        : wasAktive(false), resourceHolder(std::move(resourceHolder)) {
     updateSpriteTextrue();
 
 }
 
+Pipe::Pipe(const sf::Vector2f &pos, float distance, std::shared_ptr<constants::ResourceHolder> resourceHolder) :
+        Pipe(std::move(resourceHolder)) {
+    setPostion(pos, distance);
+    updateSprite();
+}
+
+Pipe::Pipe(float xPostion, std::shared_ptr<constants::ResourceHolder> resourceHolder)
+        : Pipe(
+        {xPostion, helperFunktions::randomInt(constants::pipe::PipeYPostionRange)},
+        helperFunktions::randomInt(constants::pipe::pipeDistanceRange), std::move(resourceHolder)) {}
+
 void Pipe::updateSpriteTextrue() {
-    spriteTop.setTexture(texture);
+    spriteTop.setTexture(resourceHolder->pipe);
+    spriteBottom.setTexture(resourceHolder->pipe);
+    transformSpriteTextrue();
+}
+
+void Pipe::transformSpriteTextrue() {
     spriteTop.setScale(constants::pipe::scale, constants::pipe::scale);
     spriteTop.setRotation(180);
-    spriteBottom.setTexture(texture);
     spriteBottom.setScale(constants::pipe::scale, constants::pipe::scale);
 }
 
@@ -49,18 +65,6 @@ bool Pipe::collision(const sf::Vector2f &pos) const {
     }
     return false;
 }
-
-Pipe::Pipe(const sf::Vector2f &pos, float distance) :
-        Pipe() {
-    setPostion(pos, distance);
-    updateSprite();
-}
-
-Pipe::Pipe(const float xPostion)
-        : Pipe(
-        {xPostion, helperFunktions::randomInt(constants::pipe::PipeYPostionRange)},
-        helperFunktions::randomInt(constants::pipe::pipeDistanceRange)
-) {}
 
 void Pipe::updateSprite() {
     spriteTop.setPosition({postion.x + spriteTop.getGlobalBounds().width, postion.y - distance / 2});
