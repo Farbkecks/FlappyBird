@@ -26,6 +26,7 @@ void RunningSceneBot::deepReset() {
     for (auto &x: best.front()) {
         weights.emplace_back(x);
     }
+    helperFunktions::print((--birdsWithNetwork.end())->bird.getScore());
     helperFunktions::print(weights);
     helperFunktions::print("\n\n");
 
@@ -49,15 +50,16 @@ void RunningSceneBot::deepUpdate() {
         }
         bird.bird.incrementScore(1);
 
-        float differnceGape = nextPipe.expired() ? 0 : nextPipe.lock()->differnceGapeToBirdY(bird.bird);
-        float differnceGapeSecondPipe = secondNextPipe.expired() ? 0 : secondNextPipe.lock()->differnceGapeToBirdY(
-                bird.bird);
-        float differnceX = nextPipe.expired() ? 0 : nextPipe.lock()->differnceBirdToPipeX(bird.bird);
-        if (bird.network.calculate(bird.bird.getVelocity(), differnceGape,
-                                   differnceGapeSecondPipe, differnceX)) {
-            bird.bird.setVelocity(constants::bird::jumpVelocity);
+        if (not nextPipe.expired() && not secondNextPipe.expired()) {
+            auto next = nextPipe.lock();
+            auto secondNext = secondNextPipe.lock();
+            if (bird.network.calculate(bird.bird.getVelocity(), next->differnceGapeToBirdY(bird.bird),
+                                       next->getGapeHeight(),
+                                       secondNext->differnceGapeToBirdY(bird.bird), secondNext->getGapeHeight(),
+                                       next->differnceBirdToPipeX(bird.bird))) {
+                bird.bird.setVelocity(constants::bird::jumpVelocity);
+            }
         }
-
 
         bird.bird.changeVelocity(constants::bird::stepChangeVelocityPerUpdate);
 

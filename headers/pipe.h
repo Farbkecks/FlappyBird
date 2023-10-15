@@ -17,13 +17,15 @@ public:
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
-    void setPostion(const sf::Vector2f &pos, float distance);
+    void setPostion(const sf::Vector2f &pos, float gapeHeight);
 
     void changeX(float step);
 
     float getX() const;
 
     sf::Vector2f getPos() const;
+
+    float getGapeHeight() const;
 
     virtual bool collisionOnY(const std::pair<float, float> &minMax) const;
 
@@ -54,6 +56,6 @@ protected:
     sf::Sprite spriteTop;
     sf::Sprite spriteBottom;
     sf::Vector2f postion;
-    float distance;
+    float gapeHeight;
     bool wasAktive;
 };

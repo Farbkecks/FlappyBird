@@ -44,9 +44,10 @@ Network::v3Float Network::getWeights() const {
     return weights;
 }
 
-bool Network::calculate(float velocity, float heightDifferenceToNextPipe, float heightDifferenceToSecondNextPipe,
-                        float xDifference) const {
-    v1Float inputs = {velocity, heightDifferenceToNextPipe, heightDifferenceToSecondNextPipe, xDifference};
+bool Network::calculate(float velocity, float heightDifferenceToNextPipe, float heightNextPipe,
+                        float heightDifferenceToSecondNextPipe, float heightSecondNextPipe, float xDifference) const {
+    v1Float inputs = {velocity, heightDifferenceToNextPipe, heightNextPipe, heightDifferenceToSecondNextPipe,
+                      heightSecondNextPipe, xDifference};
     std::vector<float> hiddenlayer(constants::network::hiddenLayerCount);
     for (int i = 0; i < hiddenlayer.size(); i++) {
         hiddenlayer.at(i) = calculateNote(weights.at(0).at(i), inputs);

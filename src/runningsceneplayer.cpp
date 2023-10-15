@@ -63,9 +63,12 @@ void RunningScenePlayer::deepUpdate() {
     //do Jump with neural Network
     if (not nextPipe.expired() && aiPlay && not secondNextPipe.expired()) {
         Network network(constants::runningSceneBot::workingWeights);
-        if (network.calculate(bird.getVelocity(), nextPipe.lock()->differnceGapeToBirdY(bird),
-                              secondNextPipe.lock()->differnceGapeToBirdY(bird),
-                              nextPipe.lock()->differnceBirdToPipeX(bird))) {
+        auto next = nextPipe.lock();
+        auto secondNext = secondNextPipe.lock();
+        if (network.calculate(bird.getVelocity(), next->differnceGapeToBirdY(bird),
+                              next->getGapeHeight(),
+                              secondNext->differnceGapeToBirdY(bird), secondNext->getGapeHeight(),
+                              next->differnceBirdToPipeX(bird))) {
             bird.setVelocity(constants::bird::jumpVelocity);
         }
     }

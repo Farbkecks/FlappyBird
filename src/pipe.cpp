@@ -37,9 +37,9 @@ void Pipe::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     target.draw(spriteBottom);
 }
 
-void Pipe::setPostion(const sf::Vector2f &pos, float distance) {
+void Pipe::setPostion(const sf::Vector2f &pos, float gapeHeight) {
     postion = pos;
-    this->distance = distance;
+    this->gapeHeight = gapeHeight;
     updateSprite();
 }
 
@@ -67,8 +67,8 @@ bool Pipe::collision(const sf::Vector2f &pos) const {
 }
 
 void Pipe::updateSprite() {
-    spriteTop.setPosition({postion.x + spriteTop.getGlobalBounds().width, postion.y - distance / 2});
-    spriteBottom.setPosition({postion.x, postion.y + distance / 2});
+    spriteTop.setPosition({postion.x + spriteTop.getGlobalBounds().width, postion.y - gapeHeight / 2});
+    spriteBottom.setPosition({postion.x, postion.y + gapeHeight / 2});
 }
 
 void Pipe::changeX(float step) {
@@ -99,4 +99,8 @@ float Pipe::differnceGapeToBirdY(const Bird &bird) const {
 float Pipe::differnceBirdToPipeX(const Bird &bird) const {
     auto diff = getX() - bird.getSchnabelPostion().x;
     return diff > 0 ? diff : 0;
+}
+
+float Pipe::getGapeHeight() const {
+    return gapeHeight;
 }
