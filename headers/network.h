@@ -53,7 +53,8 @@ public:
 
     Network(Network &lhs, Network &rhs);
 
-    bool calculate(float difdernceToGape, float velocity, float xDidfernce) const;
+    bool calculate(float velocity, float heightDifferenceToNextPipe, float heightDifferenceToSecondNextPipe,
+                   float xDifference) const;
 
     v3Float getWeights() const;
 

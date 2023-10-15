@@ -90,8 +90,8 @@ namespace constants {
     }
 
     namespace network {
-        const int inputLayerCount = 3;
-        const int hiddenLayerCount = 5;
+        const int inputLayerCount = 4;
+        const int hiddenLayerCount = 8;
         const int outputLayerCount = 1;
     }
 }
