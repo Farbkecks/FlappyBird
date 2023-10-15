@@ -12,6 +12,7 @@ void RunningScene::update() {
         pipe->changeX(constants::pipe::pipeStepPerUpdate * directionToInt(direktion) * pipeDistanceMultiplayer);
         findeAktivePipe(pipe);
         findNextPipe(pipe);
+        findSecondNextPipe(pipe);
     }
 
     //delete and generate Pipes
@@ -121,4 +122,15 @@ void RunningScene::input(sf::Event event) {
         pipeDistanceMultiplayer *= 2;
     }
     deepInput(event);
+}
+
+void RunningScene::findSecondNextPipe(const std::shared_ptr<Pipe> pipe) {
+    if (pipe->getX() < constants::bird::startPos.x + constants::pipe::pipesDistance) {
+        return;
+    }
+    if (pipe->getX() + constants::bird::birdWidth + 10 >
+        constants::bird::startPos.x + constants::pipe::pipesDistance * 2) {
+        return;
+    }
+    secondNextPipe = pipe;
 }

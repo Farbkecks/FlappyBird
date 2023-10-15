@@ -46,6 +46,8 @@ protected:
 
     void findNextPipe(const std::shared_ptr<Pipe> &pipe);
 
+    void findSecondNextPipe(const std::shared_ptr<Pipe> pipe);
+
     void drawPipeDebug(std::weak_ptr<Pipe> pipe, sf::Color color);
 
 //variables
@@ -54,6 +56,7 @@ protected:
     std::deque<std::shared_ptr<Pipe>> pipes;
     std::weak_ptr<Pipe> aktivePipe;
     std::weak_ptr<Pipe> nextPipe;
+    std::weak_ptr<Pipe> secondNextPipe;
     Direktion direktion;
     float pipeDistanceMultiplayer = 1;
 

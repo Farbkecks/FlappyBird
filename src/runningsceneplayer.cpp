@@ -88,6 +88,7 @@ void RunningScenePlayer::deepDraw() {
 
     if (drawDebug) {
         drawPipeDebug(nextPipe, sf::Color::Blue);
+        drawPipeDebug(secondNextPipe, sf::Color::Green);
         drawPipeDebug(aktivePipe, sf::Color::Red);
         for (auto const &sensor: sensors) {
             window->draw(sensor);
